@@ -32,7 +32,7 @@ def run(args) -> dict:
             raise ForgeError("cargo not found", "install Rust (rustup) then retry")
         if not (src / "Cargo.toml").is_file():
             raise ForgeError("6to5m source not vendored", "clone DesignWithTommy/6to5m into vendor/6to5m-main")
-        r = run([cargo, "build", "--release", "--offline"], cwd=src, timeout=1800)
+        r = run([cargo, "build", "--release"], cwd=src, timeout=1800)
         exe = src / "target/release/6ixpack.exe"
         return {"engine": "6to5m", **r, "binary": str(exe) if exe.is_file() else None,
                 "evidence": {"compile": "passed" if r["code"] == 0 and exe.is_file() else "failed"}}

@@ -190,6 +190,27 @@ class TestLogsConflicts(Base):
         self.assertEqual(code, 2)  # no manifest in self.tmp: named failure, not a crash
 
 
+class TestToolDiscovery(Base):
+    def test_staged_dir_scan(self):
+        d = self.tmp / "tools" / "CodeWalker"
+        d.mkdir(parents=True)
+        (d / "CodeWalker.exe").write_bytes(b"MZ")
+        os.environ["CODEWALKER"] = str(d / "CodeWalker.exe")
+        self.addCleanup(os.environ.pop, "CODEWALKER", None)
+        from gtaforge.util import find_tool
+        self.assertEqual(find_tool("codewalker"), str(d / "CodeWalker.exe"))
+
+    def test_vi_status_and_rpf_header(self):
+        code, out = self.cli("vi", "status")
+        self.assertEqual(code, 0)
+        self.assertIn("file_tools", out)
+        import struct
+        a = self.tmp / "a.rpf"
+        a.write_bytes(b"RPF7" + struct.pack("<IIII", 0, 0, 7, 0))
+        code, out = self.cli("rpf", "info", str(a))
+        self.assertEqual(out["header"][0]["entries"], 7)
+
+
 class TestVersionMirrors(Base):
     def test_mirrors(self):
         text = (ROOT / "CHANGELOG.md").read_text(encoding="utf-8")

@@ -101,6 +101,16 @@ def expand_env(path: str) -> str:
     return re.sub(r"%(\w+)%", lambda m: os.environ.get(m.group(1), m.group(0)), path)
 
 
+def _tool_dirs() -> list[Path]:
+    dirs = []
+    env = os.environ.get("GTA_FORGE_TOOLS")
+    if env:
+        dirs.append(Path(env))
+    if os.name == "nt" and os.environ.get("LOCALAPPDATA"):
+        dirs.append(Path(os.environ["LOCALAPPDATA"]) / "GTAForge" / "tools")
+    return dirs
+
+
 def find_tool(tool_id: str) -> str | None:
     import shutil
     reg = load_json(KNOWLEDGE_DIR / "tools.json")
@@ -122,6 +132,13 @@ def find_tool(tool_id: str) -> str | None:
             expanded = expand_env(hint)
             if "%" not in expanded and Path(expanded).is_file():
                 return str(Path(expanded))
+        for d in _tool_dirs():
+            if not d.is_dir():
+                continue
+            for name in t["names"]:
+                hits = sorted(d.rglob(name))
+                if hits:
+                    return str(hits[0])
     return None
 
 

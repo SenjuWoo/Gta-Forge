@@ -19,10 +19,10 @@ RPF7_MAGIC = b"RPF7"
 def rpf7_entries(path: Path) -> list[dict]:
     """Read an unencrypted RPF7 table of contents (GTA V PC archives are RPF7, encrypted names -> names are hashes)."""
     with open(path, "rb") as f:
-        head = f.read(16)
+        head = f.read(20)
         if head[:4] != RPF7_MAGIC:
             raise ForgeError(f"not an RPF7 archive: {path}", "GTA VI uses RPF9: use gtaforge vi / 6to5m")
-        _ver, _size, count, _enc = struct.unpack("<IIII", head[4:16])
+        _ver, _size, count, _enc = struct.unpack("<IIII", head[4:20])
         # Entry: name hash(4) ?(4) size(4) ?(4) offset(4) ... 12 bytes; encrypted TOC can't be read without keys.
         # We report the header only; full listing needs CodeWalker / ragekit.
         return [{"magic": "RPF7", "entries": count, "note": "TOC encrypted: names are hashes; use CodeWalker RPF Explorer or ragekit for a listing"}]
@@ -38,11 +38,10 @@ def run(args) -> dict:
                 "note": "install at least one; CodeWalker: github.com/crxhvrd/CodeWalkerProjects/releases"}
     if target is None:
         raise ForgeError("pass an archive or file", "gtaforge rpf list <archive.rpf>")
-    if args.action == "info":
-        return rpf7_entries(target) if target.is_file() else {"path": str(target), "is_dir": True}
-    if args.action == "list":
-        info = rpf7_entries(target)
-        return {"path": str(target), **info}
+    if args.action in ("info", "list"):
+        if target.is_file():
+            return {"path": str(target), "header": rpf7_entries(target)}
+        return {"path": str(target), "is_dir": True}
     cw = find_tool("codewalker")
     rk = find_tool("ragekit")
     if eng in ("auto", "codewalker") and cw:

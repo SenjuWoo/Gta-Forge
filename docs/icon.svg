@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="GTA Forge">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#06b6d4"/>
+  </linearGradient></defs>
+  <rect width="512" height="512" rx="110" fill="url(#g)"/>
+  <g fill="#fff" opacity=".18"><rect x="140" y="96" width="20" height="320" rx="10"/><rect x="246" y="96" width="20" height="320" rx="10"/><rect x="352" y="96" width="20" height="320" rx="10"/></g>
+  <text x="256" y="300" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="190" font-weight="700" fill="#fff">GF</text>
+  <rect x="192" y="404" width="128" height="64" rx="32" fill="#09090b"/>
+  <text x="256" y="450" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="700" fill="#22d3ee">VI</text>
+</svg>
