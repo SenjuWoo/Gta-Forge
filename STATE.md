@@ -7,19 +7,23 @@ Version: **0.1.0** (2026-11-24)
 Local-first GTA V mod toolkit (asi/SHVDN/Lua/XML, RPF, models, maps/MLO, anims,
 casino/activities), GTA VI watch. Facts from the installed game.
 
-## Done (0.1.0)
+## Done (0.1.0) - verified
 
-- CLI with doctor/capabilities/plan/knowledge/facts/game/natives/anim/rpf/script/
-  check/compile/build/new/bump/package/validate/deploy/logs/conflicts/nexus/hash/menyoo/vi.
-- Knowledge: facts (tiers), frameworks, tools, routes, errors, 201 real natives
-  (fivem natives.json, 2026-11-24), vi watch. Templates: cpp, shvdn, lua, xml, menyoo.
-- Vendored (git-ignored): 6to5m, ragekit, awesome-gta6-RE index.
+- 16/16 offline tests (`python tests/run_tests.py`, exit 0).
+- Installed via Install.ps1; `gtaforge doctor` on the real Enhanced install:
+  edition enhanced 1.0.1158.16, warn missing ScriptHookV/asi loader (true), exit 1.
+- `gtaforge menyoo index` on the owner's Menyoo lists: 19,771 dicts / 269,420 clips.
+- `gtaforge vi tools`: 78 projects from the vendored RPF9 index.
+- `gtaforge capabilities`: 24 commands. Skill installed to .claude/.agents.
+- Local git commit fd62b3a. No remote (publication not requested).
 
 ## Next
 
-- Offline test suite + CI, installer, skill, real-install smoke (doctor, new+check).
+- Build ragekit (vendor/ragekit-main) and 6to5m (`gtaforge vi build-6to5m`);
+  point CODEWALKER at the staged CodeWalker in the GTA 6.5 workspace.
+- Real-install smoke of new+check+package on a scratch project.
 
 ## Gaps
 
-- No GTA VI runtime test (none exists). ragekit/6to5m not built yet.
-- Native DB is a subset; full DB linked in `gtaforge natives` output.
+- No GTA VI runtime test (none exists). Native DB is a 201-name subset.
+- ragekit/6to5m/CodeWalker not on PATH yet (doctor reports them missing).
