@@ -19,11 +19,11 @@ casino/activities), GTA VI watch. Facts from the installed game.
 
 ## Next
 
-- Build ragekit (vendor/ragekit-main) and 6to5m (`gtaforge vi build-6to5m`);
-  point CODEWALKER at the staged CodeWalker in the GTA 6.5 workspace.
+- Point `CODEWALKER` at the staged CodeWalker (or copy it into
+  `%LOCALAPPDATA%\GTAForge\tools\CodeWalker`) and run a real `rpf list`.
 - Real-install smoke of new+check+package on a scratch project.
 
 ## Gaps
 
 - No GTA VI runtime test (none exists). Native DB is a 201-name subset.
-- ragekit/6to5m/CodeWalker not on PATH yet (doctor reports them missing).
+- luajit not installed (Lua `script check` falls back to a clear skip).

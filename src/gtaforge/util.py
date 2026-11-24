@@ -119,7 +119,7 @@ def find_tool(tool_id: str) -> str | None:
             continue
         if t.get("env") and os.environ.get(t["env"]):
             p = os.environ[t["env"]]
-            if Path(p).is_file():
+            if Path(p).exists():
                 return p
             hit = shutil.which(p)
             if hit:
@@ -130,7 +130,7 @@ def find_tool(tool_id: str) -> str | None:
                 return hit
         for hint in t.get("paths", []):
             expanded = expand_env(hint)
-            if "%" not in expanded and Path(expanded).is_file():
+            if "%" not in expanded and Path(expanded).exists():
                 return str(Path(expanded))
         for d in _tool_dirs():
             if not d.is_dir():
