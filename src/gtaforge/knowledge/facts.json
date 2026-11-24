@@ -1,0 +1,47 @@
+{
+ "schema": 1,
+ "note": "Hard facts. tier: tool-validated = checked by running code against an installed game; source = upstream source; docs = vendor docs; observed = seen in an install/log. Re-check docs/observed on a new patch.",
+ "facts": {
+  "game.versions": {
+   "tier": "source",
+   "source": "local exe file versions + dev-c.com supported patches (2026-11-24)",
+   "value": {"1.0.3889.0": "Legacy", "1.0.1158.13": "Enhanced", "1.0.1158.16": "Enhanced"}
+  },
+  "game.shv_supported": {
+   "tier": "docs",
+   "source": "https://dev-c.com/gtav/scripthookv (v3889.0 / 1158.13, 2026-07-15)",
+   "value": ["1.0.3889.0", "1.0.1158.13"],
+   "note": "1.0.1158.16 has no SHV build yet (modsafe.app, 2026-11-24). Never mod GTA Online: SHV closes the game."
+  },
+  "formats.archive": {
+   "tier": "source",
+   "source": "CodeWalker / ragekit source; RageForge docs",
+   "value": {"gta5_pc": "RPF7 (encrypted TOC, names are joaat hashes)", "gta5_enhanced": "RPF7 with G9EC high-res variants", "gta6_console": "RPF9 + TTPF textures (BCPack) + ADAT/AWC audio"}
+  },
+  "formats.scripts": {
+   "tier": "source",
+   "source": "calamity-inc/GTA-V-Decompiled-Scripts; alloc8or nativedb",
+   "value": {"gta5": "compiled .ysc in SCRIPT.rpf; native = joaat(name); decompiled C for reference", "gta6": "unknown; assume hashed natives like V/RDR2 until proven"}
+  },
+  "formats.models": {
+   "tier": "docs",
+   "source": "CodeWalker, Sollumz docs",
+   "value": {"gta5": "Drawable (dr), fragment (fr), ytyp/ymap placements; export via CodeWalker -> glTF/OBJ; Blender import via Sollumz", "gta6": "RPF9 drawables -> OBJ/GLB via 6to5m/RageForge (untested here)"}
+  },
+  "formats.mlo": {
+   "tier": "docs",
+   "source": "CodeWalker / FiveM docs; RageForge",
+   "value": {"meaning": "Multi-level interior (MLO) = interior shell + portals + rooms, placed by ymap; in RPF as ymap/yoat + drawable", "edit": "CodeWalker (V) / RageForge (VI); a new interior needs shell, portals, rooms, ymap, and an interior proxy"}
+  },
+  "formats.lua": {
+   "tier": "docs",
+   "source": "fxserver docs; RedM; FiveM Lua natives",
+   "value": {"gta5_sp": "Lua is not native to single-player GTA V; use C++ asi / SHVDN, or FiveM (separate server ecosystem)", "fivem": "fxmanifest.lua + client/server scripts; natives via Citizen.InvokeNative; not a single-player mod"}
+  },
+  "formats.asi": {
+   "tier": "source",
+   "source": "ScriptHookV SDK main.h",
+   "value": {"entry": "BOOL APIENTRY DllMain + script thread with WAIT(0) loop; natives via nativeCaller; keyboard via WndProc hook", "loader": "dinput8.dll / xinput1_4.dll (Enhanced) / Ultimate ASI Loader"}
+  }
+ }
+}

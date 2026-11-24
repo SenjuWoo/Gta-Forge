@@ -1,0 +1,11 @@
+{
+ "errors": [
+  {"signature": "ScriptHookV.dll not found|failed to load ScriptHookV", "meaning": "SHV missing or wrong patch", "fix": "install the SHV build that lists your exe version (gtaforge doctor)"},
+  {"signature": "Unable to load.*ScriptHookVDotNet", "meaning": "SHVDN edition mismatch", "fix": "Enhanced needs the Enhanced SHVDN; Legacy needs the Legacy one"},
+  {"signature": "Invalid pattern|pattern not found", "meaning": "a memory pattern no longer matches this patch", "fix": "update the pattern for the installed build; never ship a guessed one"},
+  {"signature": "Attempted to read or write protected memory", "meaning": "a native/pointer call on an invalid handle", "fix": "check DOES_ENTITY_EXIST / IS_PED_IN_ANY_VEHICLE before use"},
+  {"signature": "anim dict.*not loaded|ANIM_DICT", "meaning": "dict not requested or wrong name", "fix": "REQUEST_ANIM_DICT + HAS_ANIM_DICT_LOADED loop; verify with gtaforge anim"},
+  {"signature": "model.*not loaded|INVALID_MODEL", "meaning": "model not streamed in", "fix": "REQUEST_MODEL + HAS_MODEL_LOADED; SET_MODEL_AS_NO_LONGER_NEEDED"},
+  {"signature": "fatal|crash", "meaning": "could be any mod", "fix": "gtaforge logs, then test with a clean scripts/ folder"}
+ ]
+}

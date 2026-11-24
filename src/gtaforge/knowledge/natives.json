@@ -1,0 +1,2315 @@
+{
+ "schema": 1,
+ "tier": "docs",
+ "source": "https://runtime.fivem.net/doc/natives.json (fetched 2026-11-24)",
+ "natives": [
+  {
+   "name": "APPLY_PED_BLOOD",
+   "hash": "83f7e01c7b769a26",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"boneIndex\", \"type\": \"int\"}",
+    "{\"name\": \"xRot\", \"type\": \"float\"}",
+    "{\"name\": \"yRot\", \"type\": \"float\"}",
+    "{\"name\": \"zRot\", \"type\": \"float\"}",
+    "{\"name\": \"woundType\", \"type\": \"char*\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "CAN_PED_RAGDOLL",
+   "hash": "128f79edcece4fd5",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "CLEAR_PED_PROP",
+   "hash": "0943e5b8e078e76e",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped handle.\"}",
+    "{\"name\": \"propId\", \"type\": \"int\", \"description\": \"The prop id you want to clear from the ped. Refer to [SET_PED_PROP_INDEX](#\\\\_0x93376B65A266EB5F).\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "CLEAR_PED_TASKS",
+   "hash": "e1ef3c1216aff2cd",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"Ped id. Use PlayerPedId() for your own character.\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "CLEAR_PED_TASKS_IMMEDIATELY",
+   "hash": "aaa34f8a7cb32098",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"Ped id.\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "CLOSE_SEQUENCE_TASK",
+   "hash": "39e72bc99e6360cb",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"taskSequenceId\", \"type\": \"int\", \"description\": \"The task sequence to close\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "CREATE_OBJECT",
+   "hash": "509d5878eb39e842",
+   "returns": "Object",
+   "params": [
+    "{\"name\": \"modelHash\", \"type\": \"Hash\", \"annotations\": {\"cs_type\": \"int\"}, \"description\": \"The model to spawn.\"}",
+    "{\"name\": \"x\", \"type\": \"float\", \"description\": \"Spawn coordinate X component.\"}",
+    "{\"name\": \"y\", \"type\": \"float\", \"description\": \"Spawn coordinate Y component.\"}",
+    "{\"name\": \"z\", \"type\": \"float\", \"description\": \"Spawn coordinate Z component, 'ground level'.\"}",
+    "{\"name\": \"isNetwork\", \"type\": \"BOOL\", \"description\": \"Whether to create a network object for the object. If false, the object exists only locally.\"}",
+    "{\"name\": \"netMissionEntity\", \"type\": \"BOOL\", \"description\": \"Whether to register the object as pinned to the script host in the R\\\\* network model.\"}",
+    "{\"name\": \"doorFlag\", \"type\": \"BOOL\", \"description\": \"False to create a door archetype (archetype flag bit 26 set) as a door. Required to be set to true to create door models in network mode.\"}"
+   ],
+   "ns": "OBJECT"
+  },
+  {
+   "name": "CREATE_PED",
+   "hash": "d49f9b0955c367de",
+   "returns": "Ped",
+   "params": [
+    "{\"name\": \"pedType\", \"type\": \"int\", \"description\": \"Unused. Peds get set to CIVMALE/CIVFEMALE/etc. no matter the value specified.\"}",
+    "{\"name\": \"modelHash\", \"type\": \"Hash\", \"description\": \"The model of ped to spawn.\"}",
+    "{\"name\": \"x\", \"type\": \"float\", \"description\": \"Spawn coordinate X component.\"}",
+    "{\"name\": \"y\", \"type\": \"float\", \"description\": \"Spawn coordinate Y component.\"}",
+    "{\"name\": \"z\", \"type\": \"float\", \"description\": \"Spawn coordinate Z component.\"}",
+    "{\"name\": \"heading\", \"type\": \"float\", \"description\": \"Heading to face towards, in degrees.\"}",
+    "{\"name\": \"isNetwork\", \"type\": \"BOOL\", \"description\": \"Whether to create a network object for the ped. If false, the ped exists only locally.\"}",
+    "{\"name\": \"bScriptHostPed\", \"type\": \"BOOL\", \"description\": \"Whether to register the ped as pinned to the script host in the R\\\\* network model.\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "DOES_ENTITY_EXIST",
+   "hash": "7239b21a38f536ba",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\", \"description\": \"The entity to check if it exists.\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "FREEZE_ENTITY_POSITION",
+   "hash": "428ca6dbd1094446",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\", \"description\": \"The entity to freeze/unfreeze.\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\", \"description\": \"Freeze or unfreeze entity.\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "GET_ENTITY_ANIM_CURRENT_TIME",
+   "hash": "346d81500d088f42",
+   "returns": "float",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"animDict\", \"type\": \"char*\"}",
+    "{\"name\": \"animName\", \"type\": \"char*\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "GET_ENTITY_ANIM_TOTAL_TIME",
+   "hash": "50bd2730b191e360",
+   "returns": "float",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"animDict\", \"type\": \"char*\"}",
+    "{\"name\": \"animName\", \"type\": \"char*\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "GET_ENTITY_BONE_INDEX_BY_NAME",
+   "hash": "fb71170b7e76acba",
+   "returns": "int",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"boneName\", \"type\": \"char*\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "GET_ENTITY_COORDS",
+   "hash": "3fef770d40960d5a",
+   "returns": "Vector3",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\", \"description\": \"The entity to get the coordinates from.\"}",
+    "{\"name\": \"alive\", \"type\": \"BOOL\", \"description\": \"Unused by the game, potentially used by debug builds of GTA in order to assert whether or not an entity was alive.\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "GET_GAME_TIMER",
+   "hash": "9cd27b0045628463",
+   "returns": "int",
+   "params": [],
+   "ns": "MISC"
+  },
+  {
+   "name": "GET_HASH_KEY",
+   "hash": "d24d37cc275948cc",
+   "returns": "Hash",
+   "params": [
+    "{\"name\": \"string\", \"type\": \"char*\", \"description\": \"The string to hash.\"}"
+   ],
+   "ns": "MISC"
+  },
+  {
+   "name": "GET_OFFSET_FROM_ENTITY_IN_WORLD_COORDS",
+   "hash": "1899f328b0e12848",
+   "returns": "Vector3",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"offsetX\", \"type\": \"float\"}",
+    "{\"name\": \"offsetY\", \"type\": \"float\"}",
+    "{\"name\": \"offsetZ\", \"type\": \"float\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "GET_PED_BONE_COORDS",
+   "hash": "17c07fc640e86b4e",
+   "returns": "Vector3",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"boneId\", \"type\": \"int\"}",
+    "{\"name\": \"offsetX\", \"type\": \"float\"}",
+    "{\"name\": \"offsetY\", \"type\": \"float\"}",
+    "{\"name\": \"offsetZ\", \"type\": \"float\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "GET_PED_BONE_INDEX",
+   "hash": "3f428d08be5aae31",
+   "returns": "int",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"boneId\", \"type\": \"int\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "GET_PED_LAST_WEAPON_IMPACT_COORD",
+   "hash": "6c4d0409ba1a2bc2",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"coords\", \"type\": \"Vector3*\"}"
+   ],
+   "ns": "WEAPON"
+  },
+  {
+   "name": "GET_PED_TYPE",
+   "hash": "ff059e1e4c01e63c",
+   "returns": "int",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "GET_PLAYER_PED",
+   "hash": "43a66c31c68491c0",
+   "returns": "Ped",
+   "params": [
+    "{\"name\": \"playerId\", \"type\": \"Player\", \"description\": \"The player index, or -1 to get the local player ped.\"}"
+   ],
+   "ns": "PLAYER"
+  },
+  {
+   "name": "GET_VEHICLE_DIRT_LEVEL",
+   "hash": "8f17bc8ba08da62b",
+   "returns": "float",
+   "params": [
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\", \"description\": \"The vehicle to check.\"}"
+   ],
+   "ns": "VEHICLE"
+  },
+  {
+   "name": "GET_VEHICLE_DOOR_ANGLE_RATIO",
+   "hash": "fe3f9c29f7b32bd5",
+   "returns": "float",
+   "params": [
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\", \"description\": \"Vehicle\"}",
+    "{\"name\": \"doorIndex\", \"type\": \"int\", \"description\": \"Index of door to check\"}"
+   ],
+   "ns": "VEHICLE"
+  },
+  {
+   "name": "GET_VEHICLE_PED_IS_IN",
+   "hash": "9a9112a0fe9a4713",
+   "returns": "Vehicle",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The target ped\"}",
+    "{\"name\": \"lastVehicle\", \"type\": \"BOOL\", \"description\": \"A boolean value where `false` represents the current vehicle the Ped is in, and `true` represents the last vehicle the Ped was in.\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "GIVE_WEAPON_TO_PED",
+   "hash": "bf0fd6e56c964fcb",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"weaponHash\", \"type\": \"Hash\"}",
+    "{\"name\": \"ammoCount\", \"type\": \"int\"}",
+    "{\"name\": \"isHidden\", \"type\": \"BOOL\"}",
+    "{\"name\": \"bForceInHand\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "WEAPON"
+  },
+  {
+   "name": "HAS_ANIM_DICT_LOADED",
+   "hash": "d031a9162d01088c",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"animDict\", \"type\": \"char*\"}"
+   ],
+   "ns": "STREAMING"
+  },
+  {
+   "name": "HAS_MODEL_LOADED",
+   "hash": "98a4eb5d89a0c952",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"model\", \"type\": \"Hash\", \"description\": \"The model hash to check for.\"}"
+   ],
+   "ns": "STREAMING"
+  },
+  {
+   "name": "IS_ENTITY_PLAYING_ANIM",
+   "hash": "1f0b79228e461ec9",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"animDict\", \"type\": \"char*\"}",
+    "{\"name\": \"animName\", \"type\": \"char*\"}",
+    "{\"name\": \"taskFlag\", \"type\": \"int\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "IS_PED_A_PLAYER",
+   "hash": "12534c348c6cb68b",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "IS_PED_CLIMBING",
+   "hash": "53e8cb4f48bfe623",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "IS_PED_DEAD_OR_DYING",
+   "hash": "3317dedb88c95038",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped to check.\"}",
+    "{\"name\": \"checkMeleeDeathFlags\", \"type\": \"BOOL\", \"description\": \"If set to `true`, extends the check to include melee takedown moves as part of the dying phase.\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "IS_PED_FALLING",
+   "hash": "fb92a102f1c4dfa3",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "IS_PED_FLEEING",
+   "hash": "bbcce00b381f8482",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "IS_PED_INJURED",
+   "hash": "84a2dd9ac37c35c1",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped to check for injuries.\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "IS_PED_IN_ANY_VEHICLE",
+   "hash": "997abd671d25ca0b",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped to check.\"}",
+    "{\"name\": \"atGetIn\", \"type\": \"BOOL\", \"description\": \"`true` to also consider attempting to enter a vehicle.\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "IS_PED_IN_COMBAT",
+   "hash": "4859f1fc66a6278e",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"Ped index.\"}",
+    "{\"name\": \"target\", \"type\": \"Ped\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "IS_PED_IN_COVER",
+   "hash": "60dfd0691a170b88",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"exceptUseWeapon\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "IS_PED_JUMPING",
+   "hash": "cedabc5900a0bf97",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "IS_PED_SHOOTING",
+   "hash": "34616828cd07f1a1",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "IS_PED_SWIMMING",
+   "hash": "9de327631295b4c2",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "NETWORK_REQUEST_CONTROL_OF_ENTITY",
+   "hash": "b69317bf5e782347",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}"
+   ],
+   "ns": "NETWORK"
+  },
+  {
+   "name": "OPEN_SEQUENCE_TASK",
+   "hash": "e8854a4326b9e12b",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"taskSequenceId\", \"type\": \"int*\", \"description\": \"The reference to bind to, in Lua/JS this will be returned as a value\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "PLAY_ENTITY_ANIM",
+   "hash": "7fb218262b810701",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"animName\", \"type\": \"char*\"}",
+    "{\"name\": \"animDict\", \"type\": \"char*\"}",
+    "{\"name\": \"p3\", \"type\": \"float\"}",
+    "{\"name\": \"loop\", \"type\": \"BOOL\"}",
+    "{\"name\": \"stayInAnim\", \"type\": \"BOOL\"}",
+    "{\"name\": \"p6\", \"type\": \"BOOL\"}",
+    "{\"name\": \"delta\", \"type\": \"float\"}",
+    "{\"name\": \"bitset\", \"type\": \"Any\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "PLAY_PED_AMBIENT_SPEECH_NATIVE",
+   "hash": "8e04fedd28d42462",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped to play the ambient speech.\"}",
+    "{\"name\": \"speechName\", \"type\": \"char*\", \"description\": \"Name of the speech to play, eg. \\\"GENERIC_HI\\\".\"}",
+    "{\"name\": \"speechParam\", \"type\": \"char*\"}"
+   ],
+   "ns": "AUDIO"
+  },
+  {
+   "name": "REMOVE_ALL_PED_WEAPONS",
+   "hash": "f25df915fa38c5f3",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped entity\"}",
+    "{\"name\": \"p1\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "WEAPON"
+  },
+  {
+   "name": "REMOVE_ANIM_DICT",
+   "hash": "f66a602f829e2a06",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"animDict\", \"type\": \"char*\"}"
+   ],
+   "ns": "STREAMING"
+  },
+  {
+   "name": "REQUEST_ANIM_DICT",
+   "hash": "d3bd40951412fef6",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"animDict\", \"type\": \"char*\"}"
+   ],
+   "ns": "STREAMING"
+  },
+  {
+   "name": "REQUEST_MODEL",
+   "hash": "963d27a58df860ac",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"model\", \"type\": \"Hash\", \"description\": \"The model to request.\"}"
+   ],
+   "ns": "STREAMING"
+  },
+  {
+   "name": "RESET_ENTITY_ALPHA",
+   "hash": "9b1e824ffbb7027a",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ANIM_LOOPED",
+   "hash": "70033c3cc29a1ff4",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"p0\", \"type\": \"Any\"}",
+    "{\"name\": \"p1\", \"type\": \"BOOL\"}",
+    "{\"name\": \"p2\", \"type\": \"Any\"}",
+    "{\"name\": \"p3\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "SET_ANIM_RATE",
+   "hash": "032d49c5e359c847",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"p0\", \"type\": \"Any\"}",
+    "{\"name\": \"p1\", \"type\": \"float\"}",
+    "{\"name\": \"p2\", \"type\": \"Any\"}",
+    "{\"name\": \"p3\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "SET_ANIM_WEIGHT",
+   "hash": "207f1a47c0342f48",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"p0\", \"type\": \"Any\"}",
+    "{\"name\": \"p1\", \"type\": \"float\"}",
+    "{\"name\": \"p2\", \"type\": \"Any\"}",
+    "{\"name\": \"p3\", \"type\": \"Any\"}",
+    "{\"name\": \"p4\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "SET_CURRENT_PED_WEAPON",
+   "hash": "adf692b254977c0c",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"weaponHash\", \"type\": \"Hash\"}",
+    "{\"name\": \"bForceInHand\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "WEAPON"
+  },
+  {
+   "name": "SET_DRIVER_ABILITY",
+   "hash": "b195ffa8042fc5c3",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"driver\", \"type\": \"Ped\"}",
+    "{\"name\": \"ability\", \"type\": \"float\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_DRIVER_AGGRESSIVENESS",
+   "hash": "a731f608ca104e3c",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"driver\", \"type\": \"Ped\"}",
+    "{\"name\": \"aggressiveness\", \"type\": \"float\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_DRIVE_TASK_CRUISE_SPEED",
+   "hash": "5c9b84bd7d31d908",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"driver\", \"type\": \"Ped\"}",
+    "{\"name\": \"cruiseSpeed\", \"type\": \"float\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "SET_DRIVE_TASK_DRIVING_STYLE",
+   "hash": "dace1be37d88af67",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped to have their driving style set.\"}",
+    "{\"name\": \"drivingStyle\", \"type\": \"int\", \"description\": \"The driving style (see `eVehicleDrivingFlags`).\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "SET_ENTITY_ALPHA",
+   "hash": "44a0870b7e92d7c0",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\", \"description\": \"The entity to change the alpha for.\"}",
+    "{\"name\": \"alphaLevel\", \"type\": \"int\", \"description\": \"The alpha level ranges from 0 to 255, but changes occur every 20% (every 51).\"}",
+    "{\"name\": \"skin\", \"type\": \"BOOL\", \"annotations\": {\"cs_type\": \"int\"}, \"description\": \"Whether or not to change the alpha of the entity's skin.\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_ANIM_CURRENT_TIME",
+   "hash": "4487c259f0f70977",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"animDictionary\", \"type\": \"char*\"}",
+    "{\"name\": \"animName\", \"type\": \"char*\"}",
+    "{\"name\": \"time\", \"type\": \"float\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_ANIM_SPEED",
+   "hash": "28d1a16553c51776",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"animDictionary\", \"type\": \"char*\"}",
+    "{\"name\": \"animName\", \"type\": \"char*\"}",
+    "{\"name\": \"speedMultiplier\", \"type\": \"float\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_AS_MISSION_ENTITY",
+   "hash": "ad738c3085fe7e11",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\", \"description\": \"An entity handle.\"}",
+    "{\"name\": \"scriptHostObject\", \"type\": \"BOOL\", \"description\": \"Whether or not to assign script info to this entity, if set to false the entity will only be protected from despawning locally.\"}",
+    "{\"name\": \"bGrabFromOtherScript\", \"type\": \"BOOL\", \"description\": \"Changes the entity so it's owned by the current script if the entity is already a mission entity. This will only work on entities the machine has control of (non-remote entities).\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_AS_NO_LONGER_NEEDED",
+   "hash": "b736a491e64a32cf",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity*\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_CAN_BE_DAMAGED",
+   "hash": "1760ffa8ab074d66",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_CAN_BE_DAMAGED_BY_RELATIONSHIP_GROUP",
+   "hash": "e22d8fde858b8119",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"bCanBeDamaged\", \"type\": \"BOOL\"}",
+    "{\"name\": \"relGroup\", \"type\": \"int\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_COLLISION",
+   "hash": "1a9205c1b9ee827f",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}",
+    "{\"name\": \"keepPhysics\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_COORDS",
+   "hash": "06843da7060a026b",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\", \"description\": \"The entity to change coordinates for.\"}",
+    "{\"name\": \"xPos\", \"type\": \"float\", \"description\": \"The X coordinate.\"}",
+    "{\"name\": \"yPos\", \"type\": \"float\", \"description\": \"The Y coordinate.\"}",
+    "{\"name\": \"zPos\", \"type\": \"float\", \"description\": \"The Z coordinate, ground level.\"}",
+    "{\"name\": \"alive\", \"type\": \"BOOL\", \"description\": \"Unused by the game, potentially used by debug builds of GTA in order to assert whether or not an entity was alive.\"}",
+    "{\"name\": \"deadFlag\", \"type\": \"BOOL\", \"description\": \"Whether to disable physics for dead peds, too, and not just living peds.\"}",
+    "{\"name\": \"ragdollFlag\", \"type\": \"BOOL\", \"description\": \"A special flag used for ragdolling peds.\"}",
+    "{\"name\": \"clearArea\", \"type\": \"BOOL\", \"description\": \"Whether to clear any entities in the target area.\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_COORDS_NO_OFFSET",
+   "hash": "239a3351ac1da385",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\", \"description\": \"The entity to reposition.\"}",
+    "{\"name\": \"x\", \"type\": \"float\", \"description\": \"X coordinate for the new position.\"}",
+    "{\"name\": \"y\", \"type\": \"float\", \"description\": \"Y coordinate for the new position.\"}",
+    "{\"name\": \"z\", \"type\": \"float\", \"description\": \"Z coordinate for the new position.\"}",
+    "{\"name\": \"keepTasks\", \"type\": \"BOOL\", \"description\": \"If `true`, the tasks currently assigned to the ped are not removed upon teleportation. Applies only to peds.\"}",
+    "{\"name\": \"keepIK\", \"type\": \"BOOL\", \"description\": \"If `true`, the Inverse Kinematics (IK) on the ped are not reset upon teleportation. Applies only to peds.\"}",
+    "{\"name\": \"doWarp\", \"type\": \"BOOL\", \"description\": \"If `false`, the entity will maintain continuous motion and will not clear contacts nor create space for itself upon teleportation.\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_DYNAMIC",
+   "hash": "1718de8e3f2823ca",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_HAS_GRAVITY",
+   "hash": "4a4722448f18eef5",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_HEADING",
+   "hash": "8e2530aa8ada980e",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\", \"description\": \"The entity to set the heading for.\"}",
+    "{\"name\": \"heading\", \"type\": \"float\", \"description\": \"The heading in degrees.\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_INVINCIBLE",
+   "hash": "3882114bde571ad4",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_LOAD_COLLISION_FLAG",
+   "hash": "0dc7cabab1e9b67e",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_MAX_SPEED",
+   "hash": "0e46a3fcbde2a1b1",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\", \"description\": \"Entity to apply a maximum speed on\"}",
+    "{\"name\": \"speed\", \"type\": \"float\", \"description\": \"Speed in meters per second\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_ONLY_DAMAGED_BY_PLAYER",
+   "hash": "79f020ff9edc0748",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_ONLY_DAMAGED_BY_RELATIONSHIP_GROUP",
+   "hash": "7022bd828fa0b082",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"p1\", \"type\": \"BOOL\"}",
+    "{\"name\": \"relationshipHash\", \"type\": \"Hash\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_PROOFS",
+   "hash": "faee099c6f890bb8",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"bulletProof\", \"type\": \"BOOL\"}",
+    "{\"name\": \"fireProof\", \"type\": \"BOOL\"}",
+    "{\"name\": \"explosionProof\", \"type\": \"BOOL\"}",
+    "{\"name\": \"collisionProof\", \"type\": \"BOOL\"}",
+    "{\"name\": \"meleeProof\", \"type\": \"BOOL\"}",
+    "{\"name\": \"steamProof\", \"type\": \"BOOL\"}",
+    "{\"name\": \"p7\", \"type\": \"BOOL\"}",
+    "{\"name\": \"drownProof\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_ROTATION",
+   "hash": "8524a8b0171d5e07",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\", \"description\": \"The entity to rotate.\"}",
+    "{\"name\": \"pitch\", \"type\": \"float\", \"description\": \"The pitch (X-axis) rotation in degrees.\"}",
+    "{\"name\": \"roll\", \"type\": \"float\", \"description\": \"The roll (Y-axis) rotation in degrees.\"}",
+    "{\"name\": \"yaw\", \"type\": \"float\", \"description\": \"The yaw (Z-axis) rotation in degrees.\"}",
+    "{\"name\": \"rotationOrder\", \"type\": \"int\", \"description\": \"Specifies the order in which yaw, pitch, and roll are applied, see [`GET_ENTITY_ROTATION`](#\\\\_0xAFBD61CC738D9EB9) for the available rotation orders.\"}",
+    "{\"name\": \"bDeadCheck\", \"type\": \"BOOL\", \"description\": \"Usually set to `true`. Determines whether to check if the entity is dead before applying the rotation.\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_ENTITY_VISIBLE",
+   "hash": "ea1c610a04db6bbb",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\", \"description\": \"The entity to change the visibility of\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\", \"description\": \"Whether or not the entity will be visible\"}",
+    "{\"name\": \"unk\", \"type\": \"BOOL\", \"description\": \"Always 0 in scripts\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "SET_MODEL_AS_NO_LONGER_NEEDED",
+   "hash": "e532f5d78798daab",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"model\", \"type\": \"Hash\", \"description\": \"The model to release ownership of.\"}"
+   ],
+   "ns": "STREAMING"
+  },
+  {
+   "name": "SET_PED_ACCURACY",
+   "hash": "7aefb85c1d49deb6",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"accuracy\", \"type\": \"int\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_ALERTNESS",
+   "hash": "dba71115ed9941a6",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"value\", \"type\": \"int\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_AMMO",
+   "hash": "14e56bc5b5db6a19",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"weaponHash\", \"type\": \"Hash\"}",
+    "{\"name\": \"ammo\", \"type\": \"int\"}"
+   ],
+   "ns": "WEAPON"
+  },
+  {
+   "name": "SET_PED_ARMOUR",
+   "hash": "cea04d83135264cc",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"amount\", \"type\": \"int\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_CAN_BE_DRAGGED_OUT",
+   "hash": "c1670e958eee24e5",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_CAN_BE_KNOCKED_OFF_VEHICLE",
+   "hash": "7a6535691b477c48",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"state\", \"type\": \"int\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_CAN_PLAY_AMBIENT_ANIMS",
+   "hash": "6373d1349925a70e",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_CAN_PLAY_AMBIENT_BASE_ANIMS",
+   "hash": "0eb0585d15254740",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_CAN_PLAY_GESTURE_ANIMS",
+   "hash": "baf20c5432058024",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_CAN_PLAY_VISEME_ANIMS",
+   "hash": "f833ddba3b104d43",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}",
+    "{\"name\": \"p2\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_CAN_RAGDOLL",
+   "hash": "b128377056a54e2a",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_CAN_SWITCH_WEAPON",
+   "hash": "ed7f7efe9fabf340",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_CAN_TELEPORT_TO_GROUP_LEADER",
+   "hash": "2e2f4240b3f24647",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"pedHandle\", \"type\": \"Ped\"}",
+    "{\"name\": \"groupHandle\", \"type\": \"int\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_COMBAT_ABILITY",
+   "hash": "c7622c0d36b2fda8",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"p1\", \"type\": \"int\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_COMBAT_ATTRIBUTES",
+   "hash": "9f7794730795e019",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped to set attributes to.\"}",
+    "{\"name\": \"attributeIndex\", \"type\": \"int\", \"description\": \"The attribute index to set. See `eCombatAttribute` enum.\"}",
+    "{\"name\": \"enabled\", \"type\": \"BOOL\", \"description\": \"A boolean to enable/disable the attribute (true/false).\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_COMBAT_MOVEMENT",
+   "hash": "4d9ca1009afbd057",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"combatMovement\", \"type\": \"int\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_COMBAT_RANGE",
+   "hash": "3c606747b23e497b",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"Ped index\"}",
+    "{\"name\": \"range\", \"type\": \"int\", \"description\": \"See `eCombatRange` enum.\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_COMPONENT_VARIATION",
+   "hash": "262b14f48d29de80",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped handle.\"}",
+    "{\"name\": \"componentId\", \"type\": \"int\", \"description\": \"The component that you want to set.\"}",
+    "{\"name\": \"drawableId\", \"type\": \"int\", \"description\": \"The drawable id that is going to be set. Refer to [GET_NUMBER_OF_PED_DRAWABLE_VARIATIONS](#\\\\_0x27561561732A7842).\"}",
+    "{\"name\": \"textureId\", \"type\": \"int\", \"description\": \"The texture id of the drawable. Refer to [GET_NUMBER_OF_PED_TEXTURE_VARIATIONS](#\\\\_0x8F7156A3142A6BAD).\"}",
+    "{\"name\": \"paletteId\", \"type\": \"int\", \"description\": \"0 to 3.\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_CONFIG_FLAG",
+   "hash": "1913fe4cbf41c463",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"flagId\", \"type\": \"int\"}",
+    "{\"name\": \"value\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_DIES_IN_SINKING_VEHICLE",
+   "hash": "d718a22995e2b4bc",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_DIES_IN_WATER",
+   "hash": "56cef0ac79073bde",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_DIES_WHEN_INJURED",
+   "hash": "5ba7919bed300023",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_DROPS_INVENTORY_WEAPON",
+   "hash": "208a1888007fc0e6",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"weaponHash\", \"type\": \"Hash\"}",
+    "{\"name\": \"xOffset\", \"type\": \"float\"}",
+    "{\"name\": \"yOffset\", \"type\": \"float\"}",
+    "{\"name\": \"zOffset\", \"type\": \"float\"}",
+    "{\"name\": \"ammoCount\", \"type\": \"int\"}"
+   ],
+   "ns": "WEAPON"
+  },
+  {
+   "name": "SET_PED_DROPS_WEAPONS_WHEN_DEAD",
+   "hash": "476ae72c1d19d1a8",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "WEAPON"
+  },
+  {
+   "name": "SET_PED_FLEE_ATTRIBUTES",
+   "hash": "70a2d1137c8ed7c9",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"attributeFlags\", \"type\": \"int\"}",
+    "{\"name\": \"enable\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_GENERATES_DEAD_BODY_EVENTS",
+   "hash": "7fb17ba2e7deca5b",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_HEARING_RANGE",
+   "hash": "33a8f7f7d5f7f33c",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"value\", \"type\": \"float\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_ID_RANGE",
+   "hash": "f107e836a70dce05",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"value\", \"type\": \"float\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_INFINITE_AMMO_CLIP",
+   "hash": "183dadc6aa953186",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "WEAPON"
+  },
+  {
+   "name": "SET_PED_INTO_VEHICLE",
+   "hash": "f75b0d629e1c063d",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"seatIndex\", \"type\": \"int\", \"description\": \"See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\\\\_0x22AC59A870E6A669). -2 for the first available seat.\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_IN_VEHICLE_CONTEXT",
+   "hash": "530071295899a8c6",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"context\", \"type\": \"Hash\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_KEEP_TASK",
+   "hash": "971d38760fbc02ef",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_MAX_HEALTH",
+   "hash": "f5f6378c4f3419d3",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped handle we're setting this for.\"}",
+    "{\"name\": \"value\", \"type\": \"int\", \"description\": \"The new max health.\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_MONEY",
+   "hash": "a9c8960e8684c1b5",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"amount\", \"type\": \"int\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_NEVER_LEAVES_GROUP",
+   "hash": "3dbfc55d5c9bb447",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_PATH_AVOID_FIRE",
+   "hash": "4455517b28441e60",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"avoidFire\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "SET_PED_PATH_CAN_USE_CLIMBOVERS",
+   "hash": "8e06a6fe76c9eff4",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"Toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "SET_PED_PATH_CAN_USE_LADDERS",
+   "hash": "77a5b103c87f476e",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"Toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "SET_PED_PATH_MAY_ENTER_WATER",
+   "hash": "f35425a4204367ec",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"mayEnterWater\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "SET_PED_PATH_PREFER_TO_AVOID_WATER",
+   "hash": "38fe1ec73743793c",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"avoidWater\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "SET_PED_RAGDOLL_ON_COLLISION",
+   "hash": "f0a4f1bbf4fa7497",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_SEEING_RANGE",
+   "hash": "f29cf591c4bf6cee",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"value\", \"type\": \"float\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_SHOOT_RATE",
+   "hash": "614da022990752dc",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"shootRate\", \"type\": \"int\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_STEALTH_MOVEMENT",
+   "hash": "88cbb5ceb96b7bd2",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"p1\", \"type\": \"BOOL\"}",
+    "{\"name\": \"action\", \"type\": \"char*\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_STEERS_AROUND_OBJECTS",
+   "hash": "1509c089adc208bf",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_STEERS_AROUND_PEDS",
+   "hash": "46f2193b3ad1d891",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_STEERS_AROUND_VEHICLES",
+   "hash": "eb6fb9d48dde23ec",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_TARGET_LOSS_RESPONSE",
+   "hash": "0703b9079823da4a",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"responseType\", \"type\": \"int\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_TO_LOAD_COVER",
+   "hash": "332b562eeda62399",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_TO_RAGDOLL",
+   "hash": "ae99fb955581844a",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"time1\", \"type\": \"int\", \"description\": \"Time(ms) Ped is in ragdoll mode; only applies to ragdoll types 0 and not 1.\"}",
+    "{\"name\": \"time2\", \"type\": \"int\"}",
+    "{\"name\": \"ragdollType\", \"type\": \"int\"}",
+    "{\"name\": \"p4\", \"type\": \"BOOL\"}",
+    "{\"name\": \"p5\", \"type\": \"BOOL\"}",
+    "{\"name\": \"p6\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_VISUAL_FIELD_MAX_ANGLE",
+   "hash": "70793bdca1e854d4",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"value\", \"type\": \"float\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_VISUAL_FIELD_MAX_ELEVATION_ANGLE",
+   "hash": "78d0b67629d75856",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"angle\", \"type\": \"float\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_VISUAL_FIELD_MIN_ANGLE",
+   "hash": "2db492222fb21e26",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"value\", \"type\": \"float\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PED_VISUAL_FIELD_MIN_ELEVATION_ANGLE",
+   "hash": "7a276eb2c224d70f",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"angle\", \"type\": \"float\"}"
+   ],
+   "ns": "PED"
+  },
+  {
+   "name": "SET_PLAYER_MODEL",
+   "hash": "00a1cadd00108836",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"player\", \"type\": \"Player\", \"description\": \"The player to set the model for\"}",
+    "{\"name\": \"model\", \"type\": \"Hash\", \"description\": \"The model to use\"}"
+   ],
+   "ns": "PLAYER"
+  },
+  {
+   "name": "SET_PLAYER_WANTED_LEVEL",
+   "hash": "39ff19c64ef7da5b",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"player\", \"type\": \"Player\", \"description\": \"the target player\"}",
+    "{\"name\": \"wantedLevel\", \"type\": \"int\", \"description\": \"the wanted level 1-5\"}",
+    "{\"name\": \"delayedResponse\", \"type\": \"BOOL\", \"description\": \"false = 0-10sec police spawn response time, true = 10-20sec police spawn response time\"}"
+   ],
+   "ns": "PLAYER"
+  },
+  {
+   "name": "SET_VEHICLE_CUSTOM_PRIMARY_COLOUR",
+   "hash": "7141766f91d15bea",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"r\", \"type\": \"int\"}",
+    "{\"name\": \"g\", \"type\": \"int\"}",
+    "{\"name\": \"b\", \"type\": \"int\"}"
+   ],
+   "ns": "VEHICLE"
+  },
+  {
+   "name": "SET_VEHICLE_DIRT_LEVEL",
+   "hash": "79d3b596fe44ee8b",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\", \"description\": \"The vehicle to set.\"}",
+    "{\"name\": \"dirtLevel\", \"type\": \"float\", \"description\": \"A number between 0.0 and 15.0 representing the vehicles dirt level.\"}"
+   ],
+   "ns": "VEHICLE"
+  },
+  {
+   "name": "SET_VEHICLE_DOORS_LOCKED",
+   "hash": "b664292eaecf7fa6",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\", \"description\": \"The vehicle whose doors are to be locked.\"}",
+    "{\"name\": \"doorLockStatus\", \"type\": \"int\", \"description\": \"The lock state to apply to the vehicle's doors, see `eVehicleLockState`.\"}"
+   ],
+   "ns": "VEHICLE"
+  },
+  {
+   "name": "SET_VEHICLE_DOOR_OPEN",
+   "hash": "7c65dac73c35c862",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\", \"description\": \"Vehicle.\"}",
+    "{\"name\": \"doorIndex\", \"type\": \"int\", \"description\": \"Index of the door you want to open (0-7)\"}",
+    "{\"name\": \"loose\", \"type\": \"BOOL\", \"description\": \"Whether the door is \\\"loose\\\" (if true the doors have no \\\"spring\\\" and can be closed easily.)\"}",
+    "{\"name\": \"openInstantly\", \"type\": \"BOOL\", \"description\": \"Whether the doors open instantly (if true this native seems to ignore loose)\"}"
+   ],
+   "ns": "VEHICLE"
+  },
+  {
+   "name": "SET_VEHICLE_ON_GROUND_PROPERLY",
+   "hash": "49733e92263139d1",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}"
+   ],
+   "ns": "VEHICLE"
+  },
+  {
+   "name": "SET_VEHICLE_STEER_BIAS",
+   "hash": "42a8ec77d5150cbe",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"value\", \"type\": \"float\"}"
+   ],
+   "ns": "VEHICLE"
+  },
+  {
+   "name": "SET_VEHICLE_TYRE_BURST",
+   "hash": "ec6a202ee4960385",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"index\", \"type\": \"int\"}",
+    "{\"name\": \"onRim\", \"type\": \"BOOL\"}",
+    "{\"name\": \"p3\", \"type\": \"float\"}"
+   ],
+   "ns": "VEHICLE"
+  },
+  {
+   "name": "SET_VEHICLE_UNDRIVEABLE",
+   "hash": "8aba6af54b942b95",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"toggle\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "VEHICLE"
+  },
+  {
+   "name": "SET_VEHICLE_WINDOW_TINT",
+   "hash": "57c51e6bad752696",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"tint\", \"type\": \"int\"}"
+   ],
+   "ns": "VEHICLE"
+  },
+  {
+   "name": "START_SCRIPT_FIRE",
+   "hash": "6b83617e04503888",
+   "returns": "FireId",
+   "params": [
+    "{\"name\": \"X\", \"type\": \"float\"}",
+    "{\"name\": \"Y\", \"type\": \"float\"}",
+    "{\"name\": \"Z\", \"type\": \"float\"}",
+    "{\"name\": \"maxChildren\", \"type\": \"int\"}",
+    "{\"name\": \"isGasFire\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "FIRE"
+  },
+  {
+   "name": "STAT_GET_INT",
+   "hash": "767fbc2ac802ef3d",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"statHash\", \"type\": \"Hash\"}",
+    "{\"name\": \"outValue\", \"type\": \"int*\"}",
+    "{\"name\": \"p2\", \"type\": \"int\"}"
+   ],
+   "ns": "STATS"
+  },
+  {
+   "name": "STAT_SET_INT",
+   "hash": "b3271d7ab655b441",
+   "returns": "BOOL",
+   "params": [
+    "{\"name\": \"statName\", \"type\": \"Hash\"}",
+    "{\"name\": \"value\", \"type\": \"int\"}",
+    "{\"name\": \"save\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "STATS"
+  },
+  {
+   "name": "STOP_ANIM_PLAYBACK",
+   "hash": "ee08c992d238c5d1",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"p1\", \"type\": \"int\"}",
+    "{\"name\": \"p2\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "STOP_ANIM_TASK",
+   "hash": "97ff36a1d40ea00a",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"animDictionary\", \"type\": \"char*\"}",
+    "{\"name\": \"animationName\", \"type\": \"char*\"}",
+    "{\"name\": \"animExitSpeed\", \"type\": \"float\", \"description\": \"Greater than `0.0`, higher is faster. Setting to `0.0` or using an integer, will cause animation lockout - requiring the animation to be played again or the player be killed.\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "STOP_ENTITY_ANIM",
+   "hash": "28004f88151e03e0",
+   "returns": "Any",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"animation\", \"type\": \"char*\"}",
+    "{\"name\": \"animGroup\", \"type\": \"char*\"}",
+    "{\"name\": \"p3\", \"type\": \"float\"}"
+   ],
+   "ns": "ENTITY"
+  },
+  {
+   "name": "TASK_ACHIEVE_HEADING",
+   "hash": "93b93a37987f1f3d",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"heading\", \"type\": \"float\"}",
+    "{\"name\": \"timeout\", \"type\": \"int\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_BOAT_MISSION",
+   "hash": "15c86013127ce63f",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped to be tasked.\"}",
+    "{\"name\": \"boat\", \"type\": \"Vehicle\", \"description\": \"The boats' entity handle.\"}",
+    "{\"name\": \"vehicleTarget\", \"type\": \"Vehicle\", \"description\": \"The target vehicle (default is 0).\"}",
+    "{\"name\": \"pedTarget\", \"type\": \"Ped\", \"description\": \"The target ped (default is 0).\"}",
+    "{\"name\": \"x\", \"type\": \"float\", \"description\": \"The x coordinate of the target (default is 0.0f).\"}",
+    "{\"name\": \"y\", \"type\": \"float\", \"description\": \"The y coordinate of the target (default is 0.0f).\"}",
+    "{\"name\": \"z\", \"type\": \"float\", \"description\": \"The z coordinate of the target (default is 0.0f).\"}",
+    "{\"name\": \"missionType\", \"type\": \"int\", \"description\": \"The mission type (default is 0) (see [TaskVehicleMission](#\\\\_0x659427E0EF36BCDE)).\"}",
+    "{\"name\": \"speed\", \"type\": \"float\", \"description\": \"The speed in m/s (default is -1.0f).\"}",
+    "{\"name\": \"drivingStyle\", \"type\": \"int\", \"description\": \"The driving style (default is 0) (see [SetDriveTaskDrivingStyle](#\\\\_0xDACE1BE37D88AF67)).\"}",
+    "{\"name\": \"radius\", \"type\": \"float\", \"description\": \"The radius of when the task will be completed (default is -1.0f).\"}",
+    "{\"name\": \"missionFlags\", \"type\": \"int\", \"description\": \"The mission flags (default is 0) (see `eBoatMissionFlags`).\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_CHAT_TO_PED",
+   "hash": "8c338e0263e4fd19",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"target\", \"type\": \"Ped\"}",
+    "{\"name\": \"p2\", \"type\": \"Any\"}",
+    "{\"name\": \"p3\", \"type\": \"float\"}",
+    "{\"name\": \"p4\", \"type\": \"float\"}",
+    "{\"name\": \"p5\", \"type\": \"float\"}",
+    "{\"name\": \"p6\", \"type\": \"float\"}",
+    "{\"name\": \"p7\", \"type\": \"float\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_DRIVE_BY",
+   "hash": "2f8af0e82773a171",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"driverPed\", \"type\": \"Ped\"}",
+    "{\"name\": \"targetPed\", \"type\": \"Ped\"}",
+    "{\"name\": \"targetVehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"targetX\", \"type\": \"float\"}",
+    "{\"name\": \"targetY\", \"type\": \"float\"}",
+    "{\"name\": \"targetZ\", \"type\": \"float\"}",
+    "{\"name\": \"distanceToShoot\", \"type\": \"float\"}",
+    "{\"name\": \"pedAccuracy\", \"type\": \"int\"}",
+    "{\"name\": \"p8\", \"type\": \"BOOL\"}",
+    "{\"name\": \"firingPattern\", \"type\": \"Hash\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_ENTER_VEHICLE",
+   "hash": "c20e50aa46d09ca8",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"timeout\", \"type\": \"int\"}",
+    "{\"name\": \"seatIndex\", \"type\": \"int\", \"description\": \"See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\\\\_0x22AC59A870E6A669).\"}",
+    "{\"name\": \"speed\", \"type\": \"float\"}",
+    "{\"name\": \"flag\", \"type\": \"int\"}",
+    "{\"name\": \"p6\", \"type\": \"Any\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_EXTEND_ROUTE",
+   "hash": "1e7889778264843a",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"x\", \"type\": \"float\"}",
+    "{\"name\": \"y\", \"type\": \"float\"}",
+    "{\"name\": \"z\", \"type\": \"float\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_FLUSH_ROUTE",
+   "hash": "841142a1376e9006",
+   "returns": "void",
+   "params": [],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_FOLLOW_POINT_ROUTE",
+   "hash": "595583281858626e",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped to give the task to.\"}",
+    "{\"name\": \"speed\", \"type\": \"float\", \"description\": \"The speed to move at in m/s.\"}",
+    "{\"name\": \"routeMode\", \"type\": \"int\", \"description\": \"The route mode to use, refer to `eFollowPointRouteMode`\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_FOLLOW_TO_OFFSET_OF_ENTITY",
+   "hash": "304ae42e357b8c7e",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"offsetX\", \"type\": \"float\"}",
+    "{\"name\": \"offsetY\", \"type\": \"float\"}",
+    "{\"name\": \"offsetZ\", \"type\": \"float\"}",
+    "{\"name\": \"movementSpeed\", \"type\": \"float\"}",
+    "{\"name\": \"timeout\", \"type\": \"int\"}",
+    "{\"name\": \"stoppingRange\", \"type\": \"float\"}",
+    "{\"name\": \"persistFollowing\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_GOTO_ENTITY_OFFSET",
+   "hash": "e39b4ff4fdebde27",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"p1\", \"type\": \"Any\"}",
+    "{\"name\": \"p2\", \"type\": \"Any\"}",
+    "{\"name\": \"x\", \"type\": \"float\"}",
+    "{\"name\": \"y\", \"type\": \"float\"}",
+    "{\"name\": \"z\", \"type\": \"float\"}",
+    "{\"name\": \"duration\", \"type\": \"int\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_GO_STRAIGHT_TO_COORD",
+   "hash": "d76b57b44f1e6f8b",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped handle.\"}",
+    "{\"name\": \"x\", \"type\": \"float\", \"description\": \"The x coordinate.\"}",
+    "{\"name\": \"y\", \"type\": \"float\", \"description\": \"The y coordinate.\"}",
+    "{\"name\": \"z\", \"type\": \"float\", \"description\": \"The z coordinate.\"}",
+    "{\"name\": \"speed\", \"type\": \"float\", \"description\": \"The ped movement speed.\"}",
+    "{\"name\": \"timeout\", \"type\": \"int\", \"description\": \"\\\\-1 , other values appear to break the ped movement.\"}",
+    "{\"name\": \"targetHeading\", \"type\": \"float\", \"description\": \"The heading you want the ped to be on x,y,z coord.\"}",
+    "{\"name\": \"distanceToSlide\", \"type\": \"float\", \"description\": \"The distance from x,y,z where the ped will start sliding.\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_GO_TO_COORD_ANY_MEANS",
+   "hash": "5bc448cb78fa3e88",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The `Ped` Handle.\"}",
+    "{\"name\": \"x\", \"type\": \"float\", \"description\": \"The goto target coordinate.\"}",
+    "{\"name\": \"y\", \"type\": \"float\", \"description\": \"The goto target coordinate.\"}",
+    "{\"name\": \"z\", \"type\": \"float\", \"description\": \"The goto target coordinate.\"}",
+    "{\"name\": \"fMoveBlendRatio\", \"type\": \"float\", \"description\": \"0.0 = still, 1.0 = walk, 2.0 = run, 3.0 = sprint.\"}",
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\", \"annotations\": {\"cs_type\": \"Any\"}, \"description\": \"If defined, the pedestrian will only move if said vehicle exists. If you don't want any sort of association, just set it to `0`.\"}",
+    "{\"name\": \"bUseLongRangeVehiclePathing\", \"type\": \"BOOL\", \"description\": \"Setting to `true` tells the vehicle to use longrange vehicle pathing.\"}",
+    "{\"name\": \"drivingFlags\", \"type\": \"int\", \"description\": \"See `eDrivingMode` enum.\"}",
+    "{\"name\": \"fMaxRangeToShootTargets\", \"type\": \"float\", \"description\": \"Determines the maximum distance at which the `Ped` will engage in combat with threatening targets.\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_GO_TO_COORD_WHILE_AIMING_AT_COORD",
+   "hash": "11315ab3385b8ac0",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"Ped to task\"}",
+    "{\"name\": \"x\", \"type\": \"float\", \"description\": \"Destination X position\"}",
+    "{\"name\": \"y\", \"type\": \"float\", \"description\": \"Destination Y position\"}",
+    "{\"name\": \"z\", \"type\": \"float\", \"description\": \"Destination Z position\"}",
+    "{\"name\": \"aimAtX\", \"type\": \"float\", \"description\": \"Aim at target x position\"}",
+    "{\"name\": \"aimAtY\", \"type\": \"float\", \"description\": \"Aim at target Y position\"}",
+    "{\"name\": \"aimAtZ\", \"type\": \"float\", \"description\": \"Aim at target Z position\"}",
+    "{\"name\": \"moveSpeed\", \"type\": \"float\", \"description\": \"mostly 2f, but also 1/1.2f, etc.\"}",
+    "{\"name\": \"shoot\", \"type\": \"BOOL\", \"description\": \"If true ped will shoot; false - will not\"}",
+    "{\"name\": \"p9\", \"type\": \"float\", \"description\": \"Usually 2.0f\"}",
+    "{\"name\": \"p10\", \"type\": \"float\", \"description\": \"Usually 0.5f\"}",
+    "{\"name\": \"p11\", \"type\": \"BOOL\", \"description\": \"If true ped will stay still; false - will not\"}",
+    "{\"name\": \"flags\", \"type\": \"Any\", \"description\": \"0 / 512 / 513, etc\"}",
+    "{\"name\": \"p13\", \"type\": \"BOOL\"}",
+    "{\"name\": \"firingPattern\", \"type\": \"Hash\", \"description\": \"${firing_pattern_full_auto}, 0xC6EE6B4C\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_GO_TO_ENTITY",
+   "hash": "6a071245eb0d1882",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"target\", \"type\": \"Entity\"}",
+    "{\"name\": \"duration\", \"type\": \"int\"}",
+    "{\"name\": \"distance\", \"type\": \"float\"}",
+    "{\"name\": \"speed\", \"type\": \"float\"}",
+    "{\"name\": \"p5\", \"type\": \"float\"}",
+    "{\"name\": \"p6\", \"type\": \"int\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_HANDS_UP",
+   "hash": "f2eab31979a7f910",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"duration\", \"type\": \"int\"}",
+    "{\"name\": \"facingPed\", \"type\": \"Ped\"}",
+    "{\"name\": \"p3\", \"type\": \"int\"}",
+    "{\"name\": \"p4\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_HELI_MISSION",
+   "hash": "dad029e187a2beb4",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped to be tasked.\"}",
+    "{\"name\": \"heli\", \"type\": \"Vehicle\", \"description\": \"The helicopters' entity handle.\"}",
+    "{\"name\": \"vehicleTarget\", \"type\": \"Vehicle\", \"description\": \"The target vehicle (default is 0).\"}",
+    "{\"name\": \"pedTarget\", \"type\": \"Ped\", \"description\": \"The target ped (default is 0).\"}",
+    "{\"name\": \"x\", \"type\": \"float\", \"description\": \"The x coordinate of the target (default is 0.0f).\"}",
+    "{\"name\": \"y\", \"type\": \"float\", \"description\": \"The y coordinate of the target (default is 0.0f).\"}",
+    "{\"name\": \"z\", \"type\": \"float\", \"description\": \"The z coordinate of the target (default is 0.0f).\"}",
+    "{\"name\": \"missionType\", \"type\": \"int\", \"description\": \"The mission type (default is 0) (see [TaskVehicleMission](#\\\\_0x659427E0EF36BCDE)).\"}",
+    "{\"name\": \"speed\", \"type\": \"float\", \"description\": \"The speed in m/s.\"}",
+    "{\"name\": \"radius\", \"type\": \"float\", \"description\": \"The radius of when the task will be completed (default is -1.0f).\"}",
+    "{\"name\": \"heading\", \"type\": \"float\", \"description\": \"The heading the helicopter will face at task completion (default is -1.0f).\"}",
+    "{\"name\": \"height\", \"type\": \"float\", \"annotations\": {\"cs_type\": \"int\"}, \"description\": \"The height the helicopter will fly at (default is -1.0f).\"}",
+    "{\"name\": \"minHeight\", \"type\": \"float\", \"description\": \"The height the helicopter will not fly below (default is -1.0f).\"}",
+    "{\"name\": \"slowDist\", \"type\": \"float\", \"annotations\": {\"cs_type\": \"Hash\"}, \"description\": \"The distance to the target at which the helicopter will slow down (default is -1.0f).\"}",
+    "{\"name\": \"missionFlags\", \"type\": \"int\", \"description\": \"The mission flags (default is 0) (see `eHeliMissionFlags`).\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_LEAVE_ANY_VEHICLE",
+   "hash": "504d54df3f6f2247",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"p1\", \"type\": \"int\"}",
+    "{\"name\": \"flags\", \"type\": \"int\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_LEAVE_VEHICLE",
+   "hash": "d3dbce61a490be02",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"flags\", \"type\": \"int\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_LOOK_AT_COORD",
+   "hash": "6fa46612594f7973",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"x\", \"type\": \"float\"}",
+    "{\"name\": \"y\", \"type\": \"float\"}",
+    "{\"name\": \"z\", \"type\": \"float\"}",
+    "{\"name\": \"duration\", \"type\": \"int\", \"annotations\": {\"cs_type\": \"float\"}}",
+    "{\"name\": \"p5\", \"type\": \"Any\"}",
+    "{\"name\": \"p6\", \"type\": \"Any\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_LOOK_AT_ENTITY",
+   "hash": "69f4be8c8cc4796c",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"lookAt\", \"type\": \"Entity\"}",
+    "{\"name\": \"duration\", \"type\": \"int\"}",
+    "{\"name\": \"unknown1\", \"type\": \"int\"}",
+    "{\"name\": \"unknown2\", \"type\": \"int\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_PERFORM_SEQUENCE",
+   "hash": "5aba3986d90d8a3b",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped to perform the sequence on\"}",
+    "{\"name\": \"taskSequenceId\", \"type\": \"int\", \"description\": \"The sequenceId to perform\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_PLANE_MISSION",
+   "hash": "23703cd154e83b88",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"pilot\", \"type\": \"Ped\"}",
+    "{\"name\": \"aircraft\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"targetVehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"targetPed\", \"type\": \"Ped\"}",
+    "{\"name\": \"destinationX\", \"type\": \"float\"}",
+    "{\"name\": \"destinationY\", \"type\": \"float\"}",
+    "{\"name\": \"destinationZ\", \"type\": \"float\"}",
+    "{\"name\": \"missionFlag\", \"type\": \"int\"}",
+    "{\"name\": \"angularDrag\", \"type\": \"float\"}",
+    "{\"name\": \"unk\", \"type\": \"float\"}",
+    "{\"name\": \"targetHeading\", \"type\": \"float\"}",
+    "{\"name\": \"maxZ\", \"type\": \"float\"}",
+    "{\"name\": \"minZ\", \"type\": \"float\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_PLAY_ANIM",
+   "hash": "ea47fe3719165b94",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped you want to play the animation\"}",
+    "{\"name\": \"animDictionary\", \"type\": \"char*\", \"description\": \"The animation dictionary\"}",
+    "{\"name\": \"animationName\", \"type\": \"char*\", \"description\": \"The animation name\"}",
+    "{\"name\": \"blendInSpeed\", \"type\": \"float\", \"description\": \"The speed at which the animation blends in. Lower is slower and higher is faster, 1.0 is normal, 8.0 is basically instant\"}",
+    "{\"name\": \"blendOutSpeed\", \"type\": \"float\", \"description\": \"The speed at which the animation blends out. Lower is slower and higher is faster, 1.0 is normal, 8.0 is basically instant\"}",
+    "{\"name\": \"duration\", \"type\": \"int\", \"description\": \"The duration of the animation in milliseconds. -1 will play the animation until canceled\"}",
+    "{\"name\": \"flag\", \"type\": \"int\", \"description\": \"The animation flags (see enum)\"}",
+    "{\"name\": \"playbackRate\", \"type\": \"float\", \"description\": \"The playback rate (between 0.0 and 1.0)\"}",
+    "{\"name\": \"lockX\", \"type\": \"BOOL\"}",
+    "{\"name\": \"lockY\", \"type\": \"BOOL\"}",
+    "{\"name\": \"lockZ\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_PLAY_ANIM_ADVANCED",
+   "hash": "83cdb10ea29b370b",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped you want to play the animation\"}",
+    "{\"name\": \"animDictionary\", \"type\": \"char*\", \"description\": \"The animation dictionary\"}",
+    "{\"name\": \"animationName\", \"type\": \"char*\", \"description\": \"The animation name\"}",
+    "{\"name\": \"posX\", \"type\": \"float\", \"description\": \"Initial X position of the task\"}",
+    "{\"name\": \"posY\", \"type\": \"float\", \"description\": \"Initial Y position of the task\"}",
+    "{\"name\": \"posZ\", \"type\": \"float\", \"description\": \"Initial Z position of the task\"}",
+    "{\"name\": \"rotX\", \"type\": \"float\", \"description\": \"Initial X rotation of the task\"}",
+    "{\"name\": \"rotY\", \"type\": \"float\", \"description\": \"Initial Y rotation of the task\"}",
+    "{\"name\": \"rotZ\", \"type\": \"float\", \"description\": \"Initial Z rotation of the task\"}",
+    "{\"name\": \"blendInSpeed\", \"type\": \"float\", \"description\": \"The speed at which the animation blends in. Lower is slower and higher is faster, 1.0 is normal, 8.0 is basically instant\"}",
+    "{\"name\": \"blendOutSpeed\", \"type\": \"float\", \"description\": \"The speed at which the animation blends out. Lower is slower and higher is faster, 1.0 is normal, 8.0 is basically instant\"}",
+    "{\"name\": \"duration\", \"type\": \"int\", \"description\": \"The duration of the animation in milliseconds. -1 will play the animation until canceled\"}",
+    "{\"name\": \"flag\", \"type\": \"Any\", \"description\": \"See [`TASK_PLAY_ANIM`](#\\\\_0xEA47FE3719165B94)\"}",
+    "{\"name\": \"animTime\", \"type\": \"float\", \"description\": \"Value between 0.0 and 1.0, lets you start an animation from the given point\"}",
+    "{\"name\": \"p14\", \"type\": \"Any\"}",
+    "{\"name\": \"p15\", \"type\": \"Any\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_REACT_AND_FLEE_PED",
+   "hash": "72c896464915d1b1",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"fleeTarget\", \"type\": \"Ped\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_SHOOT_AT_COORD",
+   "hash": "46a6cc01e0826106",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"x\", \"type\": \"float\"}",
+    "{\"name\": \"y\", \"type\": \"float\"}",
+    "{\"name\": \"z\", \"type\": \"float\"}",
+    "{\"name\": \"duration\", \"type\": \"int\"}",
+    "{\"name\": \"firingPattern\", \"type\": \"Hash\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_SHOOT_AT_ENTITY",
+   "hash": "08da95e8298ae772",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"target\", \"type\": \"Entity\"}",
+    "{\"name\": \"duration\", \"type\": \"int\"}",
+    "{\"name\": \"firingPattern\", \"type\": \"Hash\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_SMART_FLEE_COORD",
+   "hash": "94587f17e9c365d5",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"x\", \"type\": \"float\"}",
+    "{\"name\": \"y\", \"type\": \"float\"}",
+    "{\"name\": \"z\", \"type\": \"float\"}",
+    "{\"name\": \"distance\", \"type\": \"float\"}",
+    "{\"name\": \"time\", \"type\": \"int\"}",
+    "{\"name\": \"p6\", \"type\": \"BOOL\"}",
+    "{\"name\": \"p7\", \"type\": \"BOOL\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_TURN_PED_TO_FACE_COORD",
+   "hash": "1dda930a0ac38571",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"x\", \"type\": \"float\"}",
+    "{\"name\": \"y\", \"type\": \"float\"}",
+    "{\"name\": \"z\", \"type\": \"float\"}",
+    "{\"name\": \"duration\", \"type\": \"int\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_TURN_PED_TO_FACE_ENTITY",
+   "hash": "5ad23d40115353ac",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"entity\", \"type\": \"Entity\"}",
+    "{\"name\": \"duration\", \"type\": \"int\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_USE_MOBILE_PHONE",
+   "hash": "bd2a8ec3af4de7db",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"p1\", \"type\": \"int\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_USE_NEAREST_SCENARIO_TO_COORD",
+   "hash": "277f471ba9db000b",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"x\", \"type\": \"float\"}",
+    "{\"name\": \"y\", \"type\": \"float\"}",
+    "{\"name\": \"z\", \"type\": \"float\"}",
+    "{\"name\": \"distance\", \"type\": \"float\"}",
+    "{\"name\": \"duration\", \"type\": \"int\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_AIM_AT_COORD",
+   "hash": "447c1e9ef844bc0f",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"x\", \"type\": \"float\"}",
+    "{\"name\": \"y\", \"type\": \"float\"}",
+    "{\"name\": \"z\", \"type\": \"float\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_AIM_AT_PED",
+   "hash": "e41885592b08b097",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"target\", \"type\": \"Ped\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_CHASE",
+   "hash": "3c08a8e30363b353",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"driver\", \"type\": \"Ped\"}",
+    "{\"name\": \"targetEnt\", \"type\": \"Entity\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_DRIVE_TO_COORD",
+   "hash": "e2a2aa2f659d77a7",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"x\", \"type\": \"float\"}",
+    "{\"name\": \"y\", \"type\": \"float\"}",
+    "{\"name\": \"z\", \"type\": \"float\"}",
+    "{\"name\": \"speed\", \"type\": \"float\"}",
+    "{\"name\": \"p6\", \"type\": \"Any\"}",
+    "{\"name\": \"vehicleModel\", \"type\": \"Hash\"}",
+    "{\"name\": \"drivingMode\", \"type\": \"int\"}",
+    "{\"name\": \"stopRange\", \"type\": \"float\"}",
+    "{\"name\": \"p10\", \"type\": \"float\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_DRIVE_TO_COORD_LONGRANGE",
+   "hash": "158bb33f920d360c",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"Ped id for the task.\"}",
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\", \"description\": \"Vehicle entity id for the task.\"}",
+    "{\"name\": \"x\", \"type\": \"float\", \"description\": \"Destination X coordinate.\"}",
+    "{\"name\": \"y\", \"type\": \"float\", \"description\": \"Destination Y coordinate.\"}",
+    "{\"name\": \"z\", \"type\": \"float\", \"description\": \"Destination Z coordinate.\"}",
+    "{\"name\": \"speed\", \"type\": \"float\", \"description\": \"Speed of driving.\"}",
+    "{\"name\": \"drivingStyle\", \"type\": \"int\", \"description\": \"The driving style (default is 0) (see [SetDriveTaskDrivingStyle](#\\\\_0xDACE1BE37D88AF67)).\"}",
+    "{\"name\": \"stopRange\", \"type\": \"float\", \"description\": \"Stops in the specific range near the destination. 20.0 works fine.\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_ESCORT",
+   "hash": "0fa6e4b75f302400",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"targetVehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"mode\", \"type\": \"int\"}",
+    "{\"name\": \"speed\", \"type\": \"float\"}",
+    "{\"name\": \"drivingStyle\", \"type\": \"int\", \"description\": \"The driving style (default is 0) (see [SetDriveTaskDrivingStyle](#\\\\_0xDACE1BE37D88AF67)).\"}",
+    "{\"name\": \"minDistance\", \"type\": \"float\"}",
+    "{\"name\": \"p7\", \"type\": \"int\"}",
+    "{\"name\": \"noRoadsDistance\", \"type\": \"float\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_FOLLOW",
+   "hash": "fc545a9f0626e3b6",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"driver\", \"type\": \"Ped\"}",
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"targetEntity\", \"type\": \"Entity\"}",
+    "{\"name\": \"speed\", \"type\": \"float\"}",
+    "{\"name\": \"drivingStyle\", \"type\": \"int\", \"description\": \"The driving style (default is 0) (see [SetDriveTaskDrivingStyle](#\\\\_0xDACE1BE37D88AF67)).\"}",
+    "{\"name\": \"minDistance\", \"type\": \"int\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_GOTO_NAVMESH",
+   "hash": "195aeeb13cefe2ee",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"x\", \"type\": \"float\"}",
+    "{\"name\": \"y\", \"type\": \"float\"}",
+    "{\"name\": \"z\", \"type\": \"float\"}",
+    "{\"name\": \"speed\", \"type\": \"float\"}",
+    "{\"name\": \"behaviorFlag\", \"type\": \"int\"}",
+    "{\"name\": \"stoppingRange\", \"type\": \"float\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_HELI_PROTECT",
+   "hash": "1e09c32048fefd1c",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"pilot\", \"type\": \"Ped\"}",
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"entityToFollow\", \"type\": \"Entity\"}",
+    "{\"name\": \"targetSpeed\", \"type\": \"float\"}",
+    "{\"name\": \"p4\", \"type\": \"int\"}",
+    "{\"name\": \"radius\", \"type\": \"float\"}",
+    "{\"name\": \"altitude\", \"type\": \"int\"}",
+    "{\"name\": \"p7\", \"type\": \"int\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_MISSION",
+   "hash": "659427e0ef36bcde",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped to be tasked.\"}",
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\", \"description\": \"The vehicles' entity handle.\"}",
+    "{\"name\": \"vehicleTarget\", \"type\": \"Vehicle\", \"description\": \"The target vehicle.\"}",
+    "{\"name\": \"missionType\", \"type\": \"int\", \"description\": \"The mission type (default is 0) (see `eVehicleMissionType`).\"}",
+    "{\"name\": \"speed\", \"type\": \"float\", \"description\": \"The speed in m/s.\"}",
+    "{\"name\": \"drivingStyle\", \"type\": \"int\", \"description\": \"The driving style (default is 0) (see [SetDriveTaskDrivingStyle](#\\\\_0xDACE1BE37D88AF67)).\"}",
+    "{\"name\": \"radius\", \"type\": \"float\", \"description\": \"The radius of when the task will be completed (default is -1.0f).\"}",
+    "{\"name\": \"straightLineDist\", \"type\": \"float\", \"description\": \"The distance before the vehicle will drive straight to the target (default is -1.0f).\"}",
+    "{\"name\": \"DriveAgainstTraffic\", \"type\": \"BOOL\", \"description\": \"Whether the vehicle should drive against traffic (default is false).\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_MISSION_PED_TARGET",
+   "hash": "9454528df15d657a",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped to be tasked.\"}",
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\", \"description\": \"The vehicles' entity handle.\"}",
+    "{\"name\": \"pedTarget\", \"type\": \"Ped\", \"description\": \"The target ped.\"}",
+    "{\"name\": \"missionType\", \"type\": \"int\", \"description\": \"The mission type (default is 0) (see [TaskVehicleMission](#\\\\_0x659427E0EF36BCDE)).\"}",
+    "{\"name\": \"speed\", \"type\": \"float\", \"description\": \"The speed in m/s.\"}",
+    "{\"name\": \"drivingStyle\", \"type\": \"int\", \"description\": \"The driving style (default is 0) (see [SetDriveTaskDrivingStyle](#\\\\_0xDACE1BE37D88AF67)).\"}",
+    "{\"name\": \"radius\", \"type\": \"float\", \"description\": \"The radius of when the task will be completed (default is -1.0f).\"}",
+    "{\"name\": \"straightLineDist\", \"type\": \"float\", \"description\": \"The distance before the vehicle will drive straight to the target (default is -1.0f).\"}",
+    "{\"name\": \"DriveAgainstTraffic\", \"type\": \"BOOL\", \"description\": \"Whether the vehicle should drive against traffic (default is false).\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_PLAY_ANIM",
+   "hash": "69f5c3bd0f3ebd89",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\"}",
+    "{\"name\": \"animationSet\", \"type\": \"char*\"}",
+    "{\"name\": \"animationName\", \"type\": \"char*\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_SHOOT_AT_COORD",
+   "hash": "5190796ed39c9b6d",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"x\", \"type\": \"float\"}",
+    "{\"name\": \"y\", \"type\": \"float\"}",
+    "{\"name\": \"z\", \"type\": \"float\"}",
+    "{\"name\": \"p4\", \"type\": \"float\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_VEHICLE_SHOOT_AT_PED",
+   "hash": "10ab107b887214d8",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"target\", \"type\": \"Ped\"}",
+    "{\"name\": \"p2\", \"type\": \"float\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_WANDER_IN_AREA",
+   "hash": "e054346ca3a0f315",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The ped which will wander the area.\"}",
+    "{\"name\": \"x\", \"type\": \"float\", \"description\": \"The X coordinate.\"}",
+    "{\"name\": \"y\", \"type\": \"float\", \"description\": \"The Y coordinate\"}",
+    "{\"name\": \"z\", \"type\": \"float\", \"description\": \"The Z coordinate\"}",
+    "{\"name\": \"radius\", \"type\": \"float\", \"description\": \"The radius of the area to wander around in\"}",
+    "{\"name\": \"minimalLength\", \"type\": \"int\", \"annotations\": {\"cs_type\": \"float\"}, \"description\": \"The minimal length it will wander before waiting timeBetweenWalks seconds before continuing\"}",
+    "{\"name\": \"timeBetweenWalks\", \"type\": \"float\", \"description\": \"The length of time the ped will stand still/rest between walks\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_WANDER_STANDARD",
+   "hash": "bb9ce077274f6a1b",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\"}",
+    "{\"name\": \"p1\", \"type\": \"float\"}",
+    "{\"name\": \"p2\", \"type\": \"int\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "TASK_WARP_PED_INTO_VEHICLE",
+   "hash": "9a7d091411c5f684",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ped\", \"type\": \"Ped\", \"description\": \"The Ped to be warped into the vehicle.\"}",
+    "{\"name\": \"vehicle\", \"type\": \"Vehicle\", \"description\": \"The target vehicle into which the ped will be warped.\"}",
+    "{\"name\": \"seatIndex\", \"type\": \"int\", \"description\": \"See eSeatPosition declared in [`IS_VEHICLE_SEAT_FREE`](#\\\\_0x22AC59A870E6A669).\"}"
+   ],
+   "ns": "TASK"
+  },
+  {
+   "name": "WAIT",
+   "hash": "4ede34fbadd967a6",
+   "returns": "void",
+   "params": [
+    "{\"name\": \"ms\", \"type\": \"int\"}"
+   ],
+   "ns": "SYSTEM"
+  }
+ ]
+}

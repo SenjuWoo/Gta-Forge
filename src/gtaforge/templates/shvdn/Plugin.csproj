@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>{{name}}</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Main.cs" />
+    <Reference Include="ScriptHookVDotNet3">
+      <HintPath>$(SHVDN_REF)\ScriptHookVDotNet3.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

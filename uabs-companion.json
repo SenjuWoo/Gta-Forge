@@ -1,0 +1,13 @@
+{
+ "schema": 1,
+ "id": "gta-forge",
+ "entry": {
+  "repository": "https://github.com/SenjuWoo/Gta-Forge",
+  "install": "Install.ps1 (venv + launcher on PATH + skill)",
+  "markers": ["src/gtaforge/cli.py", "gtaforge.cmd"],
+  "doctor": ["gtaforge", "doctor"],
+  "launchers": ["gtaforge.cmd", "START-HERE.bat"],
+  "capabilities": ["gtaforge", "capabilities"],
+  "platforms": ["windows", "linux"]
+ }
+}
