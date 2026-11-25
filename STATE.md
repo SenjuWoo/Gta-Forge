@@ -1,7 +1,7 @@
 # STATE
 
 Version: **1.2.0** (2026-11-24)
-Last known good: v1.1.0 (tag on 6e52993, CI green, release asset sha256 13bf2b23...7c37 verified); previous v1.0.0 (53ce61a).
+Last known good: v1.2.0 (tag on 76d116d, CI green, release asset verified against SHA256SUMS); previous v1.1.1 (615ab6c).
 
 ## Goal
 
