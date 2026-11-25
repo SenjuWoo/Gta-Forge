@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1 - 2026-11-24
+- New identity: an anvil in front of a setting sun over a neon grid (`docs/icon.svg`, rendered to `docs/icon.png`), a 16:9 cover and a 1280x640 social preview.
+- README rewritten around real proof: screenshots of real command runs (doctor + find + clip read, a ScriptHookV build and package, the GTA VI kit) and two casino props pulled out of a local install and rendered; workflow diagram; honest limits.
+- `tools/make_presentation.py` rebuilds every README image from live runs; `tools/render_glb.py` renders extracted assets headless in Blender.
+- CONTRIBUTING.md, issue and pull-request templates; release notes now come from this changelog with the cover image.
+
 ## 1.2.0 - 2026-11-24
 - `gtaforge anim clips --dict <d>`: clip names read from the installed game (ragekit pulls the .ycd, `ragekit info -v` lists it), cached per game version.
 - `gtaforge anim build --batch <dicts.txt>`: game clip index for many dicts (Enhanced 1.0.1158.16: 3,485 dicts / 51,401 clips in under a minute) at `<home>/anim_index_game/`; `anim` lookups and `bindings` clip checks use it automatically.

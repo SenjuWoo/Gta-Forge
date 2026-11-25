@@ -2,4 +2,4 @@
 
 # The one place that owns the version. pyproject.toml reads it; tests check
 # CHANGELOG.md, STATE.md and the skill against it.
-__version__ = "1.2.0"
+__version__ = "1.2.1"

@@ -1,6 +1,6 @@
 # STATE
 
-Version: **1.2.0** (2026-11-24)
+Version: **1.2.1** (2026-11-24)
 Last known good: v1.2.0 (tag on 76d116d, CI green, release asset verified against SHA256SUMS); previous v1.1.1 (615ab6c).
 
 ## Goal
@@ -27,6 +27,7 @@ already runs and is tested before any GTA VI file exists. Plan: PLAN.md.
 - 1.1.0: `find --batch` (one index load for many names); used for the GTA 6.5 T24 V-base inventory.
 - 1.1.1: PE versions read in Python (cached): batch lookups no longer spawn PowerShell per name.
 - 1.2.0: clip names read from the game (`anim clips`, `anim build`): 3,485 dicts / 51,401 clips for the GTA 6.5 V-base set; 49,096 Legacy-era clip refs -> 99.38% present in Enhanced.
+- 1.2.1: new icon, cover, social preview, README with real screenshots; presentation_check PASS (tool kind); CONTRIBUTING + issue/PR templates; release notes from CHANGELOG.
 
 ## Build / run
 

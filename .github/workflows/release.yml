@@ -24,8 +24,25 @@ jobs:
         run: |
           mkdir -p dist
           git archive --format=zip --prefix=gta-forge/ -o dist/gta-forge-${GITHUB_REF_NAME}.zip HEAD
-          sha256sum dist/*.zip > dist/SHA256SUMS
+          (cd dist && sha256sum *.zip > SHA256SUMS)
+      - name: Release notes from CHANGELOG
+        run: |
+          python - <<'EOF'
+          import os, re, pathlib
+          tag = os.environ["GITHUB_REF_NAME"].lstrip("v")
+          text = pathlib.Path("CHANGELOG.md").read_text(encoding="utf-8")
+          m = re.search(rf"^## {re.escape(tag)}\b.*?$(.*?)(?=^## |\Z)", text, re.M | re.S)
+          body = m.group(1).strip() if m else "See CHANGELOG.md."
+          repo = os.environ["GITHUB_REPOSITORY"]
+          hero = f"https://raw.githubusercontent.com/{repo}/{os.environ['GITHUB_REF_NAME']}/docs/presentation/hero.png"
+          notes = (f"![GTA Forge]({hero})\n\n## What's new in {tag}\n\n{body}\n\n"
+                   "## Install\n\nExtract the zip and run `START-HERE.bat` (Windows), or `python -m pip install -e .` "
+                   "then `gtaforge doctor`. Verify the download against `SHA256SUMS`.\n")
+          pathlib.Path("dist/NOTES.md").write_text(notes, encoding="utf-8")
+          EOF
       - uses: softprops/action-gh-release@v2
         with:
-          files: dist/*
-          generate_release_notes: true
+          files: |
+            dist/*.zip
+            dist/SHA256SUMS
+          body_path: dist/NOTES.md

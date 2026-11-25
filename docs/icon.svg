@@ -1,10 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="GTA Forge">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#7c3aed"/><stop offset="1" stop-color="#06b6d4"/>
-  </linearGradient></defs>
-  <rect width="512" height="512" rx="110" fill="url(#g)"/>
-  <g fill="#fff" opacity=".18"><rect x="140" y="96" width="20" height="320" rx="10"/><rect x="246" y="96" width="20" height="320" rx="10"/><rect x="352" y="96" width="20" height="320" rx="10"/></g>
-  <text x="256" y="300" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="190" font-weight="700" fill="#fff">GF</text>
-  <rect x="192" y="404" width="128" height="64" rx="32" fill="#09090b"/>
-  <text x="256" y="450" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="700" fill="#22d3ee">VI</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="GTA Forge: an anvil in front of a setting sun over a neon grid">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d0b3d"/>
+      <stop offset="0.58" stop-color="#3b0d4f"/>
+      <stop offset="0.59" stop-color="#0b0618"/>
+      <stop offset="1" stop-color="#05030c"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe08a"/>
+      <stop offset="0.45" stop-color="#ff8a5c"/>
+      <stop offset="1" stop-color="#ff2e88"/>
+    </linearGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5eead4"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.58" r="0.5">
+      <stop offset="0" stop-color="#ff2e88" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ff2e88" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="tile"><rect width="512" height="512" rx="112"/></clipPath>
+    <clipPath id="abovehorizon"><rect x="0" y="0" width="512" height="300"/></clipPath>
+    <mask id="bands">
+      <rect width="512" height="512" fill="#fff"/>
+      <g fill="#000">
+        <rect x="0" y="212" width="512" height="5"/>
+        <rect x="0" y="232" width="512" height="7"/>
+        <rect x="0" y="253" width="512" height="9"/>
+        <rect x="0" y="275" width="512" height="11"/>
+      </g>
+    </mask>
+  </defs>
+  <g clip-path="url(#tile)">
+    <rect width="512" height="512" fill="url(#sky)"/>
+    <rect width="512" height="512" fill="url(#glow)"/>
+    <!-- setting sun, cut by retro bands, only above the horizon -->
+    <g clip-path="url(#abovehorizon)" mask="url(#bands)">
+      <circle cx="256" cy="226" r="150" fill="url(#sun)"/>
+    </g>
+    <!-- neon floor grid in perspective -->
+    <g stroke="#22d3ee" stroke-width="2.5" fill="none" opacity="0.55">
+      <path d="M0 330 H512 M0 368 H512 M0 418 H512 M0 482 H512"/>
+      <path d="M256 300 L256 512 M256 300 L150 512 M256 300 L44 512 M256 300 L-62 512 M256 300 L362 512 M256 300 L468 512 M256 300 L574 512"/>
+    </g>
+    <rect x="0" y="297" width="512" height="5" fill="#ff5fa8"/>
+    <!-- the anvil -->
+    <path d="M92 262 C118 252 140 250 170 250 L404 250 L404 288 L360 288 C336 290 322 304 318 326 L318 356 L362 356 C377 356 386 365 386 378 L386 400 L126 400 L126 378 C126 365 135 356 150 356 L194 356 L194 326 C190 306 178 292 154 290 C130 288 110 280 92 262 Z"
+          fill="#0b0618" stroke="url(#rim)" stroke-width="9" stroke-linejoin="round"/>
+    <path d="M178 263 H392" stroke="#5eead4" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
+    <!-- strike spark -->
+    <g transform="translate(372 198)" fill="#ffe08a">
+      <path d="M0 -40 L9 -9 L40 0 L9 9 L0 40 L-9 9 L-40 0 L-9 -9 Z"/>
+      <circle r="7" fill="#fff"/>
+    </g>
+    <g fill="#ffe08a">
+      <circle cx="326" cy="216" r="5"/>
+      <circle cx="414" cy="168" r="4"/>
+      <circle cx="402" cy="236" r="3.5"/>
+    </g>
+  </g>
 </svg>

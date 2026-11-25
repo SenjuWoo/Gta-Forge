@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "gta-forge"
 dynamic = ["version"]
-description = "Local-first toolkit for making, checking and shipping GTA V (and later GTA VI) mods"
+description = "Make, check and ship single-player GTA V mods against the installed game; GTA VI day-one kit"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"

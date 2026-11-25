@@ -1,33 +1,41 @@
 <div align="center">
 
-<img src="docs/icon.png" alt="GTA Forge" width="132">
-
-# GTA Forge
-
-**A local-first workbench for GTA V mods, with a GTA VI day-one kit.**
+![GTA Forge: an anvil in front of a setting sun over a neon grid, with the tagline 'Make, check and ship GTA V mods against the game you actually have installed. Ready for the first GTA VI files.'](docs/presentation/hero.png)
 
 [![CI](https://github.com/SenjuWoo/Gta-Forge/actions/workflows/ci.yml/badge.svg)](https://github.com/SenjuWoo/Gta-Forge/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/SenjuWoo/Gta-Forge?include_prereleases)](https://github.com/SenjuWoo/Gta-Forge/releases)
-[![License: MIT](https://img.shields.io/badge/license-MIT-22c55e)](LICENSE)
-[![Python](https://img.shields.io/badge/python-3.10%2B-3776ab)](pyproject.toml)
-[![Platforms](https://img.shields.io/badge/platform-Windows%20%7C%20Linux-06b6d4)](#install)
+[![Release](https://img.shields.io/github/v/release/SenjuWoo/Gta-Forge?color=ff5fa8)](https://github.com/SenjuWoo/Gta-Forge/releases)
+[![Python](https://img.shields.io/badge/python-3.10%2B-22d3ee)](pyproject.toml)
+[![Dependencies](https://img.shields.io/badge/runtime%20deps-none-ffd678)](pyproject.toml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-8b5cf6)](LICENSE)
+
+**[Install](#install)** · **[Tour](#a-two-minute-tour)** · **[Commands](#commands)** · **[GTA VI kit](#the-gta-vi-day-one-kit)** · **[How it works](#how-it-works)** · **[Changelog](CHANGELOG.md)**
 
 </div>
 
-GTA Forge turns *"add a blackjack table"* or *"why does my asi crash on
-Enhanced?"* into a route, real files and a check you can run. It reads your
-**installed game** (edition, exe version, frameworks, every archive entry)
-instead of trusting a wiki page from 2015.
+GTA Forge is a command-line workbench for **single-player GTA V mods** (Legacy and
+Enhanced). Instead of trusting a wiki page from 2015, it reads the game you have
+installed: every archive entry, every animation clip, the exe version and the
+frameworks next to it. Then it builds, checks, packages and test-deploys your mod
+against that.
 
-- **JSON on stdout, stable exit codes** (0 ok, 1 findings, 2 named failure with a fix, 3 bug).
-- **Names are confirmed, not guessed.** An asset index of the installed game answers "does `mini@strip_club@idles@stripper` exist and where"; the full native DB (6,701 natives) answers signatures.
-- **Builds that load.** The C++ template registers with ScriptHookV correctly and compiles against the SDK with a current `natives.h`; the SHVDN template builds with the .NET SDK.
-- **Single-player only.** Never touches GTA Online, never uploads, never launches the game; writes to the game folder only on `deploy`, with backups.
-- **GTA VI day-one kit.** No PC build exists yet; `vi probe`, `vi checklist`, `vi names` and `vi watch` already run and are tested on synthetic RPF9 files and on GTA V as a control.
+It also carries a **GTA VI day-one kit**. No PC build of GTA VI exists yet, so
+the kit is built and tested now on synthetic RPF9 archives and on GTA V as a
+control, ready for the day the first real files arrive.
+
+## What you get
+
+- **No more guessing names.** `find` tells you whether an anim dict, model or texture exists in *your* install and which archive holds it. `anim clips` reads the clip names out of the game itself, and `natives` covers all 6,701 GTA V natives.
+- **Builds that load.** The C++ template registers with ScriptHookV the right way and ships a current `natives.h`. MSVC is found automatically, so no developer prompt is needed. The SHVDN template builds with the plain .NET SDK.
+- **Checks before the game ever starts.** Every native call is checked for name, namespace and argument count, for both C++ and SHVDN. It also checks the ScriptHookV entry point and Menyoo model hashes, and that packages hold no sources, framework DLLs or secrets.
+- **Safe test installs.** `deploy` copies only the build outputs, backs up whatever it replaces, and `deploy --remove` puts the game back exactly as it was.
+- **Retail archives, read-only.** The NG-encrypted RPFs open through ragekit, using keys derived from your own exe. Mod archives (OPEN RPF7) are read and written in pure Python.
+- **JSON everywhere.** Every command prints one JSON object with stable exit codes (0 ok, 1 findings, 2 a named problem with a fix). Built for scripts and AI agents, readable by people.
+
+![Terminal: gtaforge doctor reports GTA V Enhanced 1.0.1158.16 and its ScriptHookV status; gtaforge find locates the blackjack dealer animation dictionary inside the mpvinewood DLC archive; gtaforge anim clips lists 236 of 236 clips read from the game; gtaforge natives prints the TASK_PLAY_ANIM signature](docs/presentation/screenshot-doctor-find.png)
 
 ## Install
 
-**Windows:** download the source zip from the latest release, extract it and run `START-HERE.bat`, or:
+**Windows:** download the source zip from the [latest release](https://github.com/SenjuWoo/Gta-Forge/releases/latest), extract it, and run `START-HERE.bat`. Or from a shell:
 
 ```powershell
 git clone https://github.com/SenjuWoo/Gta-Forge
@@ -36,90 +44,141 @@ powershell -ExecutionPolicy Bypass -File Install.ps1
 gtaforge doctor
 ```
 
-**Any platform with Python 3.10+:** `python -m pip install -e .` then `gtaforge doctor`.
+**Any OS with Python 3.10+:**
 
-`doctor` reports, as separate sections: the game (edition, patch, ScriptHookV
-support, frameworks), the build toolchain (MSVC via vswhere, CMake, the SDK,
-dotnet), archive tools and keys, the asset index, and any GTA VI folder.
+```bash
+python -m pip install -e .
+gtaforge doctor
+```
 
-Personal tool folders (CodeWalker, the ScriptHookV SDK, an SHVDN copy) go in
-`%LOCALAPPDATA%\GTAForge\config.json` as `{"tool_dirs": ["D:\\tools"]}`.
+The forge itself needs nothing beyond Python. Optional tools unlock more, and `doctor` tells you which ones it found:
 
-## The tour
+| Tool | Unlocks |
+|---|---|
+| [ScriptHookV SDK](https://dev-c.com/gtav/scripthookv/) + Visual Studio C++ (Build Tools are enough) + CMake | building `.asi` plugins |
+| .NET SDK + `ScriptHookVDotNet3.dll` (from your game folder or the SHVDN release) | building SHVDN scripts |
+| [ragekit](https://github.com/RatPrez/ragekit) + [CodeWalker](https://github.com/crxhvrd/CodeWalkerProjects/releases) | reading retail archives, the asset index, clip names |
+| [6to5m / 6ixpack](https://github.com/DesignWithTommy/6to5m) | extracting GTA VI RPF9 archives |
+
+If your tools live somewhere unusual, list the folders in `%LOCALAPPDATA%\GTAForge\config.json`:
+
+```json
+{"tool_dirs": ["D:\\modding\\tools"]}
+```
+
+## A two-minute tour
 
 ```text
-gtaforge doctor
-gtaforge rpf keys                       # once: archive keys from your own game exe
-gtaforge index build                    # once per patch: ~389k entries in seconds
-gtaforge find anim_casino_b@amb@casino@games@blackjack@dealer
-gtaforge natives TASK_PLAY_ANIM
-gtaforge new MyMod --kind cpp --kind menyoo --target-game enhanced
-gtaforge check --compile --project MyMod
-gtaforge package --project MyMod && gtaforge validate MyMod/artifacts/MyMod-0.1.0.zip
-gtaforge deploy --dry-run --project MyMod
-gtaforge deploy --project MyMod         # story mode, -nobattleye
-gtaforge logs --mod MyMod
+gtaforge doctor                                   # what's installed, what's missing, how to fix it
+gtaforge rpf keys                                 # once: archive keys from your own game exe
+gtaforge index build                              # once per patch: every archive entry, a few seconds
+gtaforge find mini@strip_club@idles@stripper      # does it exist? where?
+gtaforge anim clips --dict mini@strip_club@idles@stripper
+gtaforge new NeonNights --kind cpp --kind menyoo --target-game enhanced
+gtaforge check --compile --project NeonNights
+gtaforge package --project NeonNights
+gtaforge deploy --dry-run --project NeonNights    # then without --dry-run; story mode, -nobattleye
+gtaforge logs --mod NeonNights
 ```
+
+![Terminal: gtaforge new creates CMakeLists.txt, src/main.cpp, inc/natives.h and a Menyoo Spooner map; gtaforge check --compile checks 3 native calls and builds build/NeonNights.asi with Ninja; the package holds only NeonNights.asi and the Spooner XML, and validation finds 0 problems](docs/presentation/screenshot-build.png)
+
+The same index that confirms names also feeds the asset pipeline. Here two casino props are pulled straight out of a local install and rendered:
+
+![Two casino props extracted from a local GTA V Enhanced install and rendered in Blender: a textured slot machine (vw_prop_casino_slot_01a) and a blackjack table with four stools (h4_prop_casino_blckjack_01a)](docs/presentation/asset-pipeline.png)
+
+## Commands
 
 | Need | Command |
 |---|---|
-| Health | `gtaforge doctor` |
-| Every command and option | `gtaforge capabilities` |
-| Route a request | `gtaforge plan "<request>"` |
-| Is this asset in the game? | `gtaforge find <name> [--ext .ycd]`, `find --batch names.txt` (after `index build`) |
-| Native signature / hash | `gtaforge natives <name\|part\|0xhash>`; `--header inc/natives.h` |
-| Clip names from the game | `gtaforge anim clips --dict <d>`, `anim build --batch dicts.txt` |
-| joaat | `gtaforge hash --joaat adder` |
-| Archives | `gtaforge rpf info\|list\|find\|extract <rpf>`, `rpf pack <dir> --out dlc.rpf` |
-| Projects | `gtaforge new <name> --kind cpp\|shvdn\|menyoo\|xml\|lua` |
-| Check / compile / build | `gtaforge check --compile`, `compile`, `build` |
-| Release loop | `bump`, `package`, `validate`, `deploy`, `logs`, `conflicts`, `nexus` |
-| Binding tables | `gtaforge bindings <keys.json> <table.json>` |
+| Health check, as separate sections | `gtaforge doctor` |
+| Every command and option, as JSON | `gtaforge capabilities` |
+| Route a request to the right surface and docs | `gtaforge plan "add a blackjack table"` |
+| Is this asset in my game? | `gtaforge find <name> [--ext .ycd]` · `find --batch names.txt` |
+| Clip names, read from the game | `gtaforge anim clips --dict <d>` · `anim build --batch dicts.txt` |
+| Native signature or hash | `gtaforge natives <name\|part\|0xhash>` · `natives --header inc/natives.h` |
+| joaat hashes | `gtaforge hash --joaat adder zentorno` |
+| Archives | `gtaforge rpf info\|list\|find\|extract <rpf>` · `rpf pack <folder> --out dlc.rpf` |
+| New project | `gtaforge new <name> --kind cpp\|shvdn\|menyoo\|xml\|lua` |
+| Check, compile, build | `gtaforge check --compile` · `compile` · `build` |
+| Release loop | `bump` · `package` · `validate` · `deploy` · `logs` · `conflicts` · `nexus` |
+| Binding tables (content keys to game assets) | `gtaforge bindings <keys.json> <table.json>` |
 | GTA VI | `gtaforge vi status\|watch\|probe\|checklist\|names\|extract\|tools\|build-6to5m` |
 
-## What it covers
+Knowledge docs ship with the tool: `gtaforge knowledge` lists them (formats, RPF,
+scripts, anims, deploy, packaging, bindings, GTA VI).
 
-| Area | Detail |
+## The GTA VI day-one kit
+
+![Terminal: gtaforge vi probe finds one RPF9 archive with its record counts and a nested archive; gtaforge vi watch reports VIctory and 6to5m alive and RageForge gone; gtaforge vi checklist runs 12 first checks, two done and six ready](docs/presentation/screenshot-vi-kit.png)
+
+| Command | On day one |
 |---|---|
-| **Scripts** | C++ asi (ScriptHookV SDK, CMake + MSVC found automatically, current natives.h), C# SHVDN v3 (net48), Menyoo Spooner XML, Lua (FiveM) |
-| **Static checks** | native exists, namespace, argument count (C++ `NS::NAME(` and SHVDN `Function.Call`), ScriptHookV entry point, Menyoo `ModelHash` = joaat(`HashName`), XML |
-| **Archives** | RPF7 reader + OPEN writer in pure Python; NG retail archives through ragekit with keys derived from your exe; RPF9 header reader |
-| **Asset index** | every entry of every archive of the installed game, nested; `find` by name and type |
-| **Release loop** | payload rules (build outputs, never sources), deterministic zip, validation (sources, path escapes, framework dlls, secrets), deploy with original backups and clean removal |
-| **Binding tables** | content keys -> per-game assets, verified against the index, coverage per module: the porting contract for engine-agnostic mods |
-| **GTA VI** | content-signature census of any folder, RPF9 headers + nested archives, 12-step first-checks list, joaat name recovery, live GitHub watch of the community tools |
+| `vi probe <folder>` | sorts every file by content signature, not extension: executables with version and hash, RPF7/8/9 archives with RPF9 header fields and nested archives, plus audio banks, texture pools and metadata |
+| `vi checklist <folder>` | the twelve first checks, run automatically where a tool can, with the exact next command for the rest |
+| `vi extract <rpf> [--list]` | extraction through 6ixpack |
+| `vi names <hashes> --words <list>` | recovers names from hashed tables: joaat over wordlists, the GTA V asset index and generated variants |
+| `vi watch` | live status of the community tools on GitHub, so a takedown is noticed early |
 
-## Architecture
+These are honest limits: the probe and checklist have only run on synthetic RPF9
+files and on GTA V. Nothing here decrypts GTA VI tables itself; that is 6ixpack's job.
 
+## How it works
+
+```mermaid
+flowchart LR
+  subgraph Game["Your GTA V install (read-only)"]
+    EXE[GTA5_Enhanced.exe] --> KEYS[rpf keys]
+    RPF[(retail RPF archives)]
+  end
+  KEYS --> RK[ragekit]
+  RPF --> RK
+  RK --> IDX[(asset index)]
+  RK --> CLIPS[(clip index)]
+  IDX --> FIND[find / bindings]
+  CLIPS --> FIND
+  NDB[(6,701 natives)] --> CHECK
+  NEW[new: templates] --> CHECK[check: natives, args, entry point, hashes]
+  CHECK --> COMPILE[compile: MSVC + CMake / dotnet]
+  COMPILE --> PKG[package: payload only]
+  PKG --> DEPLOY[deploy: backups + receipt]
+  DEPLOY -->|story mode, -nobattleye| Game
 ```
-gtaforge (Python, stdlib only)
-  cli.py              JSON + exit codes; bad usage is exit 2, never a traceback
-  game.py             discovery (arg, env, Steam, Rockstar, Epic), editions, frameworks, GTA VI folders
-  rpf7.py / rpf9.py   archive formats; rpf.py routes python vs ragekit
-  index.py            asset index of the installed game
-  natives.py          native DB + natives.h generator
-  scripts.py check.py static checks; compilemod.py / build.py real builds
-  project.py package.py deploy.py   manifest, payload, zip, deploy receipt
-  bindings.py vi.py   binding coverage; GTA VI kit
-  knowledge/          facts with tier + source, routes, docs, natives.json.gz
-  templates/          cpp, shvdn, menyoo, xml, lua
+
+- **Standard library only.** No runtime dependencies, no daemon, no network except `vi watch`.
+- **Facts are data with sources.** Natives, framework markers, routes and the GTA VI watch live in versioned files under `src/gtaforge/knowledge/`.
+- **Separate evidence tiers.** Every report keeps static, compile, load and gameplay results apart, so a passed check is never reported as a working mod.
+- **Your keys stay yours.** Archive keys are derived on your machine and live in `~/.ragekit/keys`. They are never committed and never shipped.
+
+## Tested
+
+The suite has two halves. The **offline** half uses fake game folders and
+synthetic RPF7/RPF9 archives, and includes a fuzz pass that runs every command
+with bad input; it runs on every push for Windows and Linux on Python 3.10,
+3.13 and 3.14. The **real** half runs against an installed game and toolchain
+and skips itself when they are absent. It covers retail archive headers, ragekit
+listing and extraction, index lookups, clip reading, a GTA V control probe, name
+recovery, and real C++ and SHVDN template builds.
+
+```bash
+python tests/run_tests.py
 ```
 
-## Evidence, not vibes
+## Scope and limits
 
-Static, compile, load and gameplay are separate claims in every report. The
-test suite has an offline part (fake game trees, synthetic RPF7/RPF9 archives,
-a fuzz pass that runs every command with bad input) and a real part that runs
-against an installed game and toolchain and skips itself when they are absent.
+- Single-player only. Mods and GTA Online don't mix: ScriptHookV closes the game there.
+- ScriptHookV support follows dev-c.com. `doctor` warns when your game patch is newer than the hook.
+- Loading in game and gameplay are your test. The forge reports them as "not run" until you do.
 
-## Limits
+## Contributing
 
-- ScriptHookV support follows dev-c.com; `doctor` warns when your patch is newer than the hook.
-- NG archive access needs ragekit plus CodeWalker's `magic.dat` on your machine; keys never leave it.
-- GTA VI: **no playable PC build exists**. The kit prepares the first day; it is not a VI mod loader.
+Issues and pull requests are welcome. A fix starts with a failing test, and
+`python tests/run_tests.py` must pass. Format facts need a primary source:
+upstream code or the installed files.
 
 ## License
 
 MIT, see [LICENSE](LICENSE). Third-party tools keep their own licences
-([THIRD-PARTY.md](THIRD-PARTY.md)); nothing third-party is redistributed.
-Version 1.2.0.
+([THIRD-PARTY.md](THIRD-PARTY.md)); nothing third-party is redistributed. Game
+assets shown in the screenshots belong to their owners and were extracted from a
+locally installed copy for illustration. Version 1.2.1.

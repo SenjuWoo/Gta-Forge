@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: GTA VI tooling status
+    url: https://github.com/Ahmet-Dedeler/awesome-gta6-reverse-engineering
+    about: The community index of GTA VI file tools that `gtaforge vi tools` reads

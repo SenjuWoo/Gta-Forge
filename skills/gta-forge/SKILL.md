@@ -2,7 +2,7 @@
 name: gta-forge
 description: Use when making, checking or shipping GTA V mods (ScriptHookV asi, SHVDN, Menyoo XML, Lua/FiveM, RPF archives, models, maps/MLO, anims, casino/activities, binding tables) or preparing for GTA VI files (RPF9 probe, name recovery, first checks). Local-first CLI, JSON output.
 ---
-# GTA Forge (1.2.0)
+# GTA Forge (1.2.1)
 
 Start every task with the CLI, not memory:
 
