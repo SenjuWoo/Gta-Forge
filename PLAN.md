@@ -33,7 +33,7 @@ goal: GTA Forge 1.0 - every command correct on the real GTA V Enhanced install, 
 | F09 | `bindings check`: binding-key table vs the asset index / anim index (GTA 6.5 T37 contract), coverage % per module | complete | F04 | cmd:python tests/run_tests.py | cmd:python tests/run_tests.py @ f761a0c exit=0 |
 | F10 | Doctor: MSVC via vswhere, SHV SDK, keys state, Enhanced loader name, `-nobattleye`, VI runtime section; knowledge docs rewritten; every route doc exists (test) | complete | F03 | cmd:gtaforge doctor | cmd:gtaforge doctor @ f761a0c exit=1 (correct findings: ScriptHookV absent and unsupported on 1.0.1158.16; all sections present) |
 | F11 | Test suite: every command via CLI, no exit 3 on bad input (fuzz), real-install tests (skipped without the game), version mirrors | complete | F01-F10 | cmd:python tests/run_tests.py | cmd:python tests/run_tests.py @ f761a0c exit=0 (53 tests) |
-| F12 | 1.0.0: version, CHANGELOG, README, SKILL, STATE; install; CI green on the pushed SHA; release | pending | F11 | cmd:gh run list -R SenjuWoo/Gta-Forge | - |
+| F12 | 1.0.0: version, CHANGELOG, README, SKILL, STATE; install; CI green on the pushed SHA; release | complete | F11 | cmd:gh run list -R SenjuWoo/Gta-Forge | cmd:gh run list -R SenjuWoo/Gta-Forge @ 53ce61a exit=0 (CI 6/6 success run 45522014027; Release v1.0.0 success; asset sha256 be65a745...f16c matches SHA256SUMS) |
 
 ## Decisions
 

@@ -1,7 +1,7 @@
 # STATE
 
 Version: **1.0.0** (2026-11-24)
-Last known good: 1.0.0 (this commit); previous release v0.2.0.
+Last known good: v1.0.0 (tag on 53ce61a, CI 6/6 green, release asset verified); previous release v0.2.0.
 
 ## Goal
 
@@ -11,7 +11,9 @@ already runs and is tested before any GTA VI file exists. Plan: PLAN.md.
 
 ## Done (1.0.0) - verified
 
-- Offline suite: `python tests/run_tests.py` (43 offline + 9 real tests).
+- Suite: `python tests/run_tests.py` = 53 tests (44 offline + 9 real-install/toolchain), exit 0.
+- Released v1.0.0 from 53ce61a: CI matrix ubuntu/windows x py3.10/3.13/3.14 green; Release workflow green; downloaded zip sha256 matches SHA256SUMS. Open alerts: Dependabot 0, secret scanning 0, code scanning unknown (token lacks scope).
+- Launcher exit codes fixed (were always 0) and installer skill copy no longer nests.
 - Real install (Enhanced 1.0.1158.16): every top-level RPF reads as RPF7/NG;
   `rpf keys` (exe + CodeWalker magic.dat) -> ragekit lists and extracts retail
   archives; `index build` = 123 archives, 388,893 entries, 4.7 s;
