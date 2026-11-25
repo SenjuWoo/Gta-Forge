@@ -465,6 +465,14 @@ class TestIndexBindings(Base):
         code, r = self.cli("find", "nothing_like_this")
         self.assertEqual(code, 1)
 
+    def test_find_batch(self):
+        self.fake_index()
+        names = self.tmp / "n.txt"
+        names.write_text("adder\n# comment\nADDER\nprop_bench_01a\nno_such_thing\n\n", encoding="utf-8")
+        code, r = self.cli("find", "--batch", names)
+        self.assertEqual((code, r["names"], r["found"], r["missing"]), (1, 3, 2, ["no_such_thing"]))
+        self.assertEqual(self.cli("find")[0], 2)
+
     def test_no_index_is_named(self):
         os.environ["GTA_FORGE_INDEX"] = str(self.tmp / "none")
         self.assertEqual(self.cli("find", "adder")[0], 2)

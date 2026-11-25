@@ -1,6 +1,6 @@
 # STATE
 
-Version: **1.0.0** (2026-11-24)
+Version: **1.1.0** (2026-11-24)
 Last known good: v1.0.0 (tag on 53ce61a, CI 6/6 green, release asset verified); previous release v0.2.0.
 
 ## Goal
@@ -23,6 +23,8 @@ already runs and is tested before any GTA VI file exists. Plan: PLAN.md.
   with all 6,701 natives); shvdn template -> DLL against SHVDN 3.9.0.6.
 - GTA VI kit: probe/checklist/names on synthetic RPF9; probe on GTA V as a
   control; names recovers 2,000/2,000 real GTA V model hashes; `vi watch` live.
+
+- 1.1.0: `find --batch` (one index load for many names); used for the GTA 6.5 T24 V-base inventory.
 
 ## Build / run
 

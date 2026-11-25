@@ -66,7 +66,7 @@ gtaforge logs --mod MyMod
 | Health | `gtaforge doctor` |
 | Every command and option | `gtaforge capabilities` |
 | Route a request | `gtaforge plan "<request>"` |
-| Is this asset in the game? | `gtaforge find <name> [--ext .ycd]` (after `index build`) |
+| Is this asset in the game? | `gtaforge find <name> [--ext .ycd]`, `find --batch names.txt` (after `index build`) |
 | Native signature / hash | `gtaforge natives <name\|part\|0xhash>`; `--header inc/natives.h` |
 | joaat | `gtaforge hash --joaat adder` |
 | Archives | `gtaforge rpf info\|list\|find\|extract <rpf>`, `rpf pack <dir> --out dlc.rpf` |
@@ -121,4 +121,4 @@ against an installed game and toolchain and skips itself when they are absent.
 
 MIT, see [LICENSE](LICENSE). Third-party tools keep their own licences
 ([THIRD-PARTY.md](THIRD-PARTY.md)); nothing third-party is redistributed.
-Version 1.0.0.
+Version 1.1.0.

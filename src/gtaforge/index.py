@@ -127,6 +127,29 @@ def exists(name: str, game: Path | None = None, ext: str | None = None) -> list[
     return [{"path": p, "kind": KINDS.get(Path(p).suffix.lower(), "other"), "size": s} for p, _k, s in hits]
 
 
+def find_batch(names: list[str], game: Path | None = None, ext: str | None = None, where: int = 3) -> dict:
+    """Many exact lookups with one index load. `g9ec` marks names that also exist in an Enhanced-generation
+    (`*_g9ec`) pack, the higher-resolution copies Enhanced added."""
+    idx = current_index(game)
+    items, missing = [], []
+    seen = set()
+    for raw in names:
+        name = raw.strip()
+        if not name or name.startswith("#") or name.lower() in seen:
+            continue
+        seen.add(name.lower())
+        hits = exists(name, game, ext)
+        row = {"name": name, "found": bool(hits), "count": len(hits), "where": [h["path"] for h in hits[:where]],
+               "g9ec": any("g9ec" in h["path"].lower() for h in hits)}
+        if hits:
+            row["kinds"] = sorted({h["kind"] for h in hits})
+        else:
+            missing.append(name)
+        items.append(row)
+    return {"index": str(idx), "names": len(items), "found": len(items) - len(missing), "missing_count": len(missing),
+            "missing": missing, "items": items}
+
+
 def find(query: str, game: Path | None = None, limit: int = 50, ext: str | None = None) -> dict:
     if not query.strip():
         raise ForgeError("empty query", "gtaforge find <asset name or part>")

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.0 - 2026-11-24
+- `gtaforge find --batch <file>`: many exact lookups with one index load; per name: found, archive paths, kinds, and whether an Enhanced-generation `*_g9ec` pack also holds it. Exit 1 when any name is missing. Used by the GTA 6.5 V-base inventory.
+
 ## 1.0.0 - 2026-11-24
 Rebuilt after an audit of 0.2.0 against the real Enhanced install and toolchain.
 

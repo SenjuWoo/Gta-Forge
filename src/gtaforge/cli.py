@@ -114,7 +114,15 @@ def cmd_index(args):
 
 
 def cmd_find(args):
-    from .index import find
+    from .index import find, find_batch
+    if args.batch:
+        f = Path(args.batch)
+        if not f.is_file():
+            raise ForgeError(f"no file: {f}", "one asset name per line")
+        r = find_batch(f.read_text(encoding="utf-8", errors="replace").splitlines(), _game(args, required=False), ext=args.ext)
+        return r, (0 if not r["missing"] else 1)
+    if not args.query:
+        raise ForgeError("pass a name or --batch <file>", "gtaforge find adder")
     r = find(args.query, _game(args, required=False), limit=args.limit, ext=args.ext)
     return r, (0 if r["found"] or r["partial_count"] else 1)
 
@@ -256,8 +264,9 @@ def parser() -> argparse.ArgumentParser:
     sp.add_argument("--limit-archives", type=int)
     sp.add_argument("--ext", help="limit to an extension (.ycd, .ydr, .ytd, ...)")
     sp.add_argument("--limit", type=int, default=50)
-    sp = add("find", cmd_find, "is this asset in the game? (anim dict, model, texture... via the asset index)")
-    sp.add_argument("query")
+    sp = add("find", cmd_find, "is this asset in the game? (anim dict, model, texture... via the asset index); --batch for many")
+    sp.add_argument("query", nargs="?")
+    sp.add_argument("--batch", metavar="FILE", help="one name per line; exit 1 if any is missing")
     sp.add_argument("--ext")
     sp.add_argument("--limit", type=int, default=50)
     sp = add("script", cmd_script, "script projects: info, check (natives, args, entry point, XML), lua syntax")
