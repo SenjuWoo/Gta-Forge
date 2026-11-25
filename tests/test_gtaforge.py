@@ -572,6 +572,20 @@ class TestMenyooAnims(Base):
         self.assertEqual(r["dicts"], 1)
 
 
+class TestClipParsing(Base):
+    def test_parse_ragekit_info(self):
+        from gtaforge.anims import parse_info
+        text = ("clip dictionary: 3 clips, 2 animations, 9 structures\n  clips: 3\n"
+                "    pack:/stripper_idle_01.clip: animation, 0.000 .. 3.0 s\n"
+                "    pack:/female_turn_card_facial.clip: animation, 1 .. 2 s\n"
+                "    plain_name.clip: list, 0 .. 1 s\n  animations: 2\n    hash_F27BA174: 10 frames\n")
+        self.assertEqual(parse_info(text), ["female_turn_card_facial", "plain_name", "stripper_idle_01"])
+
+    def test_clips_needs_dict_and_named_errors(self):
+        self.assertEqual(self.cli("anim", "clips")[0], 2)
+        self.assertEqual(self.cli("anim", "build")[0], 2)
+
+
 class TestKnowledgeAndCli(Base):
     def test_routes_name_existing_docs(self):
         routes = json.loads((KNOWLEDGE_DIR / "routes.json").read_text(encoding="utf-8"))

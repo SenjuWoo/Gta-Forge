@@ -2,7 +2,7 @@
 name: gta-forge
 description: Use when making, checking or shipping GTA V mods (ScriptHookV asi, SHVDN, Menyoo XML, Lua/FiveM, RPF archives, models, maps/MLO, anims, casino/activities, binding tables) or preparing for GTA VI files (RPF9 probe, name recovery, first checks). Local-first CLI, JSON output.
 ---
-# GTA Forge (1.1.1)
+# GTA Forge (1.2.0)
 
 Start every task with the CLI, not memory:
 
@@ -10,7 +10,7 @@ Start every task with the CLI, not memory:
 2. `gtaforge plan "<request>"` - route, docs, what to avoid.
 3. Confirm every name before writing it:
    `gtaforge find <asset> [--ext .ycd|.ydr|.ytd]` (asset index; `gtaforge rpf keys` + `gtaforge index build` once),
-   `gtaforge natives <name|0xhash>`, `gtaforge anim --dict <d>`, `gtaforge hash --joaat <name>`.
+   `gtaforge natives <name|0xhash>`, `gtaforge anim clips --dict <d>` (clip names read from the game), `gtaforge hash --joaat <name>`.
 4. `gtaforge new <name> --kind cpp|shvdn|menyoo|xml|lua --target-game enhanced`, then `gtaforge check --compile`.
 5. `gtaforge package`, `gtaforge validate <zip>`, `gtaforge deploy --dry-run`, `gtaforge deploy`, `gtaforge logs`.
 6. Engine-agnostic mods: `gtaforge bindings <keys.json> <game table.json>` (coverage per module).

@@ -89,6 +89,14 @@ class TestRealGame(unittest.TestCase):
         code, out = cli("find", "definitely_not_a_gta_asset_name_42")
         self.assertEqual(code, 1)
 
+    @unittest.skipUnless(index_ok() and find_tool("ragekit") and keys_ok(), "asset index, ragekit or keys missing")
+    def test_clip_names_read_from_the_game(self):
+        code, out = cli("anim", "clips", "--dict", "anim_casino_b@amb@casino@games@blackjack@dealer", "--refresh")
+        self.assertEqual(code, 0, out)
+        self.assertTrue(out["complete"])
+        self.assertGreater(out["clip_count"], 100)
+        self.assertIn("female_turn_card", out["clips"])
+
     def test_vi_probe_on_gta5_control(self):
         tmp = Path(tempfile.mkdtemp(prefix="gtaforge_real_"))
         self.addCleanup(shutil.rmtree, tmp, True)

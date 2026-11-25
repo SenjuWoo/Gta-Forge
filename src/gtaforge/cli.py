@@ -92,7 +92,17 @@ def cmd_natives(args):
 
 
 def cmd_anim(args):
-    from .anims import lookup
+    from .anims import build, clips, lookup
+    if args.action == "clips":
+        if not args.dict:
+            raise ForgeError("pass --dict <anim dict>", "gtaforge anim clips --dict mini@strip_club@idles@stripper")
+        return clips(args.dict, _game(args, required=False), refresh=args.refresh), 0
+    if args.action == "build":
+        if not args.batch or not Path(args.batch).is_file():
+            raise ForgeError("pass --batch <file> with one anim dict per line", "gtaforge anim build --batch dicts.txt")
+        r = build(Path(args.batch).read_text(encoding="utf-8", errors="replace").splitlines(), _game(args, required=False),
+                  workers=args.workers)
+        return r, (1 if r["failed"] else 0)
     if args.dict:
         return lookup(dict_name=args.dict, clip=args.clip, limit=args.limit), 0
     return lookup(pattern=args.pattern, limit=args.limit), 0
@@ -241,7 +251,11 @@ def parser() -> argparse.ArgumentParser:
     sp.add_argument("--ns", help="limit to a namespace (PED, TASK, ...)")
     sp.add_argument("--limit", type=int, default=25)
     sp.add_argument("--header", metavar="OUT", help="write a current natives.h for the ScriptHookV SDK")
-    sp = add("anim", cmd_anim, "animation dict / clip lookup in the anim index (Menyoo list or GTA 6.5 data)")
+    sp = add("anim", cmd_anim, "anim dicts/clips: lookup (index), clips (read one dict from the game), build (game clip index)")
+    sp.add_argument("action", nargs="?", default="lookup", choices=["lookup", "clips", "build"])
+    sp.add_argument("--batch", help="build: one anim dict per line")
+    sp.add_argument("--refresh", action="store_true", help="clips: ignore the cache")
+    sp.add_argument("--workers", type=int, default=8)
     sp.add_argument("--dict")
     sp.add_argument("--clip")
     sp.add_argument("--pattern")

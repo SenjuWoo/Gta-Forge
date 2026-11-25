@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0 - 2026-11-24
+- `gtaforge anim clips --dict <d>`: clip names read from the installed game (ragekit pulls the .ycd, `ragekit info -v` lists it), cached per game version.
+- `gtaforge anim build --batch <dicts.txt>`: game clip index for many dicts (Enhanced 1.0.1158.16: 3,485 dicts / 51,401 clips in under a minute) at `<home>/anim_index_game/`; `anim` lookups and `bindings` clip checks use it automatically.
+- Anim index keys are matched case-insensitively.
+
 ## 1.1.1 - 2026-11-24
 - Exe/dll versions are read from the PE version resource in Python (cached, any OS) instead of one PowerShell process per call; `find --batch` over 2,745 names went from minutes to 1.4 s. Output matches Windows' FileVersion on the installed game, ScriptHookV and SHVDN files.
 
