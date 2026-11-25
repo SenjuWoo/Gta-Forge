@@ -40,7 +40,7 @@ jobs:
                    "then `gtaforge doctor`. Verify the download against `SHA256SUMS`.\n")
           pathlib.Path("dist/NOTES.md").write_text(notes, encoding="utf-8")
           EOF
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           files: |
             dist/*.zip
