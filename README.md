@@ -126,23 +126,17 @@ files and on GTA V. Nothing here decrypts GTA VI tables itself; that is 6ixpack'
 ## How it works
 
 ```mermaid
-flowchart LR
-  subgraph Game["Your GTA V install (read-only)"]
-    EXE[GTA5_Enhanced.exe] --> KEYS[rpf keys]
-    RPF[(retail RPF archives)]
-  end
-  KEYS --> RK[ragekit]
-  RPF --> RK
-  RK --> IDX[(asset index)]
-  RK --> CLIPS[(clip index)]
-  IDX --> FIND[find / bindings]
+flowchart TD
+  GAME["Your GTA V install (read-only)"] -->|"rpf keys + ragekit"| IDX[("asset index")]
+  GAME -->|"anim build"| CLIPS[("clip index")]
+  IDX --> FIND["find · anim clips · bindings"]
   CLIPS --> FIND
-  NDB[(6,701 natives)] --> CHECK
-  NEW[new: templates] --> CHECK[check: natives, args, entry point, hashes]
-  CHECK --> COMPILE[compile: MSVC + CMake / dotnet]
-  COMPILE --> PKG[package: payload only]
-  PKG --> DEPLOY[deploy: backups + receipt]
-  DEPLOY -->|story mode, -nobattleye| Game
+  NEW["new: templates"] --> CHECK["check: natives, args, entry point, hashes"]
+  NDB[("6,701 natives")] --> CHECK
+  CHECK --> COMPILE["compile: MSVC + CMake · dotnet"]
+  COMPILE --> PKG["package: payload only"]
+  PKG --> DEPLOY["deploy: backups + receipt"]
+  DEPLOY -->|"story mode, -nobattleye"| GAME
 ```
 
 - **Standard library only.** No runtime dependencies, no daemon, no network except `vi watch`.
