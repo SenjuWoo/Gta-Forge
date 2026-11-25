@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.1 - 2026-11-24
+- Exe/dll versions are read from the PE version resource in Python (cached, any OS) instead of one PowerShell process per call; `find --batch` over 2,745 names went from minutes to 1.4 s. Output matches Windows' FileVersion on the installed game, ScriptHookV and SHVDN files.
+
 ## 1.1.0 - 2026-11-24
 - `gtaforge find --batch <file>`: many exact lookups with one index load; per name: found, archive paths, kinds, and whether an Enhanced-generation `*_g9ec` pack also holds it. Exit 1 when any name is missing. Used by the GTA 6.5 V-base inventory.
 

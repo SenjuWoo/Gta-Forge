@@ -66,19 +66,41 @@ def hash_file(path: Path) -> dict:
     return {"path": str(path), "bytes": path.stat().st_size, "sha256": sha256(path)}
 
 
+_VERSION_CACHE: dict[tuple, str | None] = {}
+_FIXED_SIG = b"\xbd\x04\xef\xfe"  # VS_FIXEDFILEINFO.dwSignature 0xFEEF04BD
+
+
 def file_version(path: Path) -> str | None:
-    """PE file version (Windows only, via PowerShell). None elsewhere or on failure."""
-    if os.name != "nt" or not path.is_file():
-        return None
-    import subprocess
+    """PE file version from the VS_FIXEDFILEINFO block, read in Python (any OS, no PowerShell).
+
+    Cached per (path, size, mtime): 1.0.0 spawned PowerShell on every call, which made batch
+    lookups crawl. None when the file has no version resource."""
+    path = Path(path)
     try:
-        r = subprocess.run(["powershell", "-NoProfile", "-Command",
-                            f"(Get-Item -LiteralPath '{str(path).replace(chr(39), chr(39)*2)}').VersionInfo.FileVersion"],
-                           capture_output=True, text=True, timeout=30)
-        v = r.stdout.strip()
-        return v or None
-    except (OSError, subprocess.SubprocessError):
+        st = path.stat()
+    except OSError:
         return None
+    if not path.is_file():
+        return None
+    key = (str(path).lower(), st.st_size, st.st_mtime_ns)
+    if key in _VERSION_CACHE:
+        return _VERSION_CACHE[key]
+    import mmap
+    ver = None
+    try:
+        with open(path, "rb") as f, mmap.mmap(f.fileno(), 0, access=mmap.ACCESS_READ) as m:
+            if m[:2] == b"MZ":
+                at = m.rfind(_FIXED_SIG)  # the version resource sits in .rsrc near the end
+                while at >= 0 and ver is None:
+                    sig, strucv, ms, ls = struct.unpack_from("<IIII", m, at)
+                    if strucv in (0x00010000, 0):
+                        ver = f"{ms >> 16}.{ms & 0xFFFF}.{ls >> 16}.{ls & 0xFFFF}"
+                    else:
+                        at = m.rfind(_FIXED_SIG, 0, at)
+    except (OSError, ValueError, struct.error):
+        ver = None
+    _VERSION_CACHE[key] = ver
+    return ver
 
 
 def run_proc(argv: list[str], cwd: Path | None = None, timeout: int = 600, env: dict | None = None, replace_env: bool = False) -> dict:

@@ -121,4 +121,4 @@ against an installed game and toolchain and skips itself when they are absent.
 
 MIT, see [LICENSE](LICENSE). Third-party tools keep their own licences
 ([THIRD-PARTY.md](THIRD-PARTY.md)); nothing third-party is redistributed.
-Version 1.1.0.
+Version 1.1.1.

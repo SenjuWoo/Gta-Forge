@@ -523,6 +523,16 @@ class TestGameDoctor(Base):
         self.assertTrue(fw["asi_loader"]["installed"])  # 0.2.0 required all three loader names at once
         self.assertEqual(out["version"]["edition"], "enhanced")
 
+    def test_file_version_python_reader(self):
+        from gtaforge.util import file_version
+        exe = self.tmp / "GTA5_Enhanced.exe"
+        fixed = struct.pack("<IIII", 0xFEEF04BD, 0x00010000, (1 << 16) | 0, (1158 << 16) | 16)
+        exe.write_bytes(b"MZ" + b"\0" * 500 + fixed + b"\0" * 64)
+        self.assertEqual(file_version(exe), "1.0.1158.16")
+        (self.tmp / "plain.exe").write_bytes(b"MZ" + b"\0" * 100)
+        self.assertIsNone(file_version(self.tmp / "plain.exe"))
+        self.assertIsNone(file_version(self.tmp / "missing.exe"))
+
     def test_rejects_non_game(self):
         self.assertEqual(self.cli("game", "--game", self.tmp)[0], 2)
 

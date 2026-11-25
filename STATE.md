@@ -1,6 +1,6 @@
 # STATE
 
-Version: **1.1.0** (2026-11-24)
+Version: **1.1.1** (2026-11-24)
 Last known good: v1.1.0 (tag on 6e52993, CI green, release asset sha256 13bf2b23...7c37 verified); previous v1.0.0 (53ce61a).
 
 ## Goal
@@ -25,6 +25,7 @@ already runs and is tested before any GTA VI file exists. Plan: PLAN.md.
   control; names recovers 2,000/2,000 real GTA V model hashes; `vi watch` live.
 
 - 1.1.0: `find --batch` (one index load for many names); used for the GTA 6.5 T24 V-base inventory.
+- 1.1.1: PE versions read in Python (cached): batch lookups no longer spawn PowerShell per name.
 
 ## Build / run
 
