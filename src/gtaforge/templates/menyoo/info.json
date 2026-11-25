@@ -1,5 +1,0 @@
-{
- "name": "{{name}}",
- "game": "{{game}}",
- "note": "Menyoo metadata is read by Menyoo; keep this file valid JSON."
-}

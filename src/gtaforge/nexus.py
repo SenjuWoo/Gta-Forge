@@ -3,11 +3,12 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from .util import ForgeError, load_json
+from .project import load_manifest
+from .util import ForgeError
 
 
 def run(project: Path) -> dict:
-    m = load_json(project / "gtaforge.json")
+    m = load_manifest(project)
     if not (project / "CHANGELOG.md").is_file():
         raise ForgeError("no CHANGELOG.md", "add one (Keep a Changelog)")
     text = (project / "CHANGELOG.md").read_text(encoding="utf-8")

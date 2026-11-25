@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- {{name}} - Menyoo Object Spooner map. Load in game: Menyoo > Object Spooner > Manage Saved Files. -->
+<!-- gtaforge check verifies every ModelHash equals joaat(HashName). Type: 1 ped, 2 vehicle, 3 object. -->
+<SpoonerPlacements>
+	<Note>{{name}}</Note>
+	<ClearDatabase>false</ClearDatabase>
+	<ClearWorld>0</ClearWorld>
+	<ReferenceCoords>
+		<X>-1337.0</X>
+		<Y>-1278.0</Y>
+		<Z>4.9</Z>
+	</ReferenceCoords>
+	<Placement>
+		<ModelHash>{{joaat:prop_bench_01a}}</ModelHash>
+		<Type>3</Type>
+		<Dynamic>false</Dynamic>
+		<FrozenPos>true</FrozenPos>
+		<HashName>prop_bench_01a</HashName>
+		<InitialHandle>0</InitialHandle>
+		<OpacityLevel>255</OpacityLevel>
+		<LodDistance>16960</LodDistance>
+		<IsVisible>true</IsVisible>
+		<PositionRotation>
+			<X>-1337.0</X>
+			<Y>-1278.0</Y>
+			<Z>4.9</Z>
+			<Pitch>0</Pitch>
+			<Roll>0</Roll>
+			<Yaw>0</Yaw>
+		</PositionRotation>
+		<Attachment isAttached="false" />
+	</Placement>
+</SpoonerPlacements>

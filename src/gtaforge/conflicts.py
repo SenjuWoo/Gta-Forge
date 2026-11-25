@@ -6,7 +6,7 @@ import re
 from collections import defaultdict
 from pathlib import Path
 
-from .util import load_json
+from .project import load_manifest
 
 
 def _owners(paths: list[Path]) -> dict[str, list[str]]:
@@ -17,7 +17,7 @@ def _owners(paths: list[Path]) -> dict[str, list[str]]:
 
 
 def run(project: Path, game: Path) -> dict:
-    m = load_json(project / "gtaforge.json")
+    m = load_manifest(project)
     groups = {
         "asi": list(game.glob("*.asi")),
         "scripts": list((game / "scripts").rglob("*")) if (game / "scripts").is_dir() else [],

@@ -1,14 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <!-- SHVDN v3 script. Build: dotnet build -c Release -p:SHVDN_REF=<folder with ScriptHookVDotNet3.dll> (gtaforge compile does this). -->
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <AssemblyName>{{name}}</AssemblyName>
+    <RootNamespace>{{name}}</RootNamespace>
     <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Version>0.1.0</Version>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Reference assemblies so the .NET SDK can target .NET Framework 4.8 without Visual Studio. -->
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="ScriptHookVDotNet3">
       <HintPath>$(SHVDN_REF)\ScriptHookVDotNet3.dll</HintPath>
+      <Private>false</Private>
     </Reference>
   </ItemGroup>
 </Project>

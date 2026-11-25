@@ -2,14 +2,15 @@
  "checked": "2026-11-24",
  "platform": {
   "official_pc": "not announced (console launch 2026-11-19 PS5/Xbox Series)",
-  "viVictory": "github.com/Marvisak/VIctory - Xbox build in a Windows process; menus 30 fps, world rendering fails (status 2026-11-23); GPL-3.0; no plugin API documented",
+  "viVictory": "github.com/Marvisak/VIctory - Xbox build in a Windows process; menus run, world rendering incomplete (2026-11-23); GPL-3.0; no plugin API documented; repo active (pushed 2026-11-25)",
   "leonida": "community port around the leaked Xbox build; Discord/GitHub vanished ~2026-11-23 (press)"
  },
  "file_tools": {
   "rpf9_index": "github.com/Ahmet-Dedeler/awesome-gta6-reverse-engineering (MIT, 2026-11-24)",
-  "6to5m": "github.com/DesignWithTommy/6to5m - Rust CLI+MCP, RPF9 extract, TTPF->DDS/PNG, drawables->OBJ/GLB, VI->V conversion; GPL-3.0; no release",
-  "rageforge": "github.com/nullbrik/RageForge - 404 via API on 2026-11-24 (unknown)",
+  "6to5m": "github.com/DesignWithTommy/6to5m - Rust CLI+MCP: RPF9 extract, TTPF->DDS/PNG, drawables->OBJ/GLB, VI->V conversion; GPL-3.0; no release (build: gtaforge vi build-6to5m)",
+  "rageforge": "github.com/nullbrik/RageForge - 404 on the GitHub API (2026-11-24): gone or private",
   "codewalker_vi": "none known"
  },
- "note": "No playable GTA VI for PC exists. Any installer/launcher that says otherwise is fake or malware. A mod needs (1) a PC-runnable build the owner supplies, (2) a script/native dispatch, (3) an archive tool. Until then build against GTA V and keep the engine layer swappable."
+ "note": "No playable GTA VI for PC exists. Any installer/launcher that says otherwise is fake or malware. A mod needs (1) a PC-runnable build the owner supplies, (2) a script/native dispatch, (3) an archive tool. Until then build against GTA V and keep the engine layer swappable.",
+ "watch": "gtaforge vi watch re-checks these repos live"
 }

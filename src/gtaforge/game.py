@@ -136,8 +136,10 @@ def game_version(root: Path) -> dict:
     facts = load_json(KNOWLEDGE_DIR / "facts.json")["facts"]
     fv = ed.get("file_version")
     known = facts["game.versions"]["value"]
+    supported = facts["game.shv_supported"]["value"]
     return {**ed, "patch": known.get(fv) if fv else None,
-            "shv_supported": (facts["game.shv_supported"]["value"] if fv else None),
+            "shv_supported": (fv in supported) if fv else None, "shv_supports": supported,
+            "shv_checked": facts["game.shv_supported"].get("source"),
             "note": None if not fv or fv in known else "file version not in the forge's table; update knowledge/facts.json"}
 
 
@@ -145,13 +147,35 @@ def frameworks(root: Path) -> list[dict]:
     reg = load_json(KNOWLEDGE_DIR / "frameworks.json")
     out = []
     for fw in reg["frameworks"]:
-        present = all((root / m).exists() for m in fw["markers"])
+        hits = [m for m in fw["markers"] if (root / m).exists()]
+        present = bool(hits) if fw.get("match") == "any" else len(hits) == len(fw["markers"])
         ver = None
         if present and fw.get("version_from"):
             ver = file_version(root / fw["version_from"])
-        out.append({"id": fw["id"], "name": fw["name"], "installed": present, "version": ver,
+        out.append({"id": fw["id"], "name": fw["name"], "installed": present, "version": ver, "found": hits,
                     "role": fw["role"], "repo": fw.get("repo"), "nexus": fw.get("nexus"),
                     "edition": fw.get("edition", "both")})
+    return out
+
+
+VI_FOLDERS = ("Grand Theft Auto VI", "Grand Theft Auto VI Enhanced", "GTA VI", "GTA6", "VIctory")
+
+
+def find_vi() -> list[dict]:
+    """Folders that could hold a PC-runnable GTA VI (env GTA6_ROOT, Steam libraries). Reported, never trusted:
+    `gtaforge vi probe` says what is actually inside."""
+    out = []
+    seen = set()
+    cands = [("env:GTA6_ROOT", Path(os.environ["GTA6_ROOT"]))] if os.environ.get("GTA6_ROOT") else []
+    for lib in _steam_libraries():
+        cands += [("steam", lib / "steamapps" / "common" / n) for n in VI_FOLDERS]
+    for how, p in cands:
+        k = str(p).lower()
+        if k in seen or not p.is_dir():
+            continue
+        seen.add(k)
+        exes = sorted(x.name for x in p.glob("*.exe"))
+        out.append({"path": str(p), "found_by": how, "exes": exes[:20]})
     return out
 
 

@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- {{name}} - data file. Declare where it goes in gtaforge.json "payload" (e.g. an onigiri or dlc folder). -->
+<data name="{{name}}" />

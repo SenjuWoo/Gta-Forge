@@ -1,14 +1,16 @@
 {
+ "note": "Discovery order per tool: env var, PATH names, path hints, then a recursive name scan of the tool dirs (GTA_FORGE_TOOLS, %LOCALAPPDATA%\\GTAForge\\tools, and tool_dirs in %LOCALAPPDATA%\\GTAForge\\config.json). Personal paths belong in config.json, not here.",
  "tools": [
-  {"id": "codewalker", "name": "CodeWalker (crxhvrd continuation)", "names": ["CodeWalker.exe", "CodeWalker RPF Explorer.exe"], "env": "CODEWALKER", "paths": ["%LOCALAPPDATA%\\GTAForge\\tools\\CodeWalker\\CodeWalker.exe", "Z:\\Backup\\GTA 6\\GTA 6.5\\tools\\imports\\CodeWalker-v1.0.0\\CodeWalker.exe"], "role": "RPF7 open/extract/edit, ymt round-trip, model export (GUI; scriptable via ragekit)", "source": "https://github.com/crxhvrd/CodeWalkerProjects/releases", "license": "no licence file; private use"},
-  {"id": "ragekit", "name": "ragekit CLI", "names": ["ragekit.exe"], "env": "RAGEKIT_CLI", "paths": ["%LOCALAPPDATA%\\GTAForge\\tools\\ragekit\\ragekit.exe"], "role": "C++20 GTA V/Enhanced reader/writer (RPF, models, textures, collision, meta) - build from vendor/ragekit-main", "source": "https://github.com/RatPrez/ragekit", "license": "NOASSERTION"},
-  {"id": "6to5m", "name": "6ixpack (6to5m)", "names": ["6ixpack.exe"], "env": "SIXPACK", "paths": ["%LOCALAPPDATA%\\GTAForge\\tools\\6to5m\\6ixpack.exe"], "role": "GTA VI RPF9/TTPF extract + convert (Rust) - gtaforge vi build-6to5m", "source": "https://github.com/DesignWithTommy/6to5m", "license": "GPL-3.0"},
-  {"id": "shv_sdk", "name": "ScriptHookV SDK", "names": [], "env": "SHV_SDK", "paths": ["Z:\\Backup\\GTA 6\\GTA 6.5\\tools\\imports\\ScriptHookV_SDK_1.0.617.1a"], "role": "inc/ + lib/ScriptHookV.lib for C++ asi", "source": "https://dev-c.com/gtav/scripthookv/"},
+  {"id": "codewalker", "name": "CodeWalker (crxhvrd continuation)", "names": ["CodeWalker.exe"], "env": "CODEWALKER", "paths": [], "role": "RPF7 GUI, viewers, Gen9 converter; its CodeWalker.Core.dll holds magic.dat for NG keys", "source": "https://github.com/crxhvrd/CodeWalkerProjects/releases", "license": "no licence file; private use"},
+  {"id": "ragekit", "name": "ragekit CLI", "names": ["ragekit.exe", "rk.exe", "ragekit", "rk"], "env": "RAGEKIT_CLI", "paths": [], "role": "C++20 GTA V Legacy/Enhanced reader/writer: rpf ls/cat/extract/pack/keys, ytd/ydr/yft convert, gltf, awc", "source": "https://github.com/RatPrez/ragekit", "license": "NOASSERTION"},
+  {"id": "6to5m", "name": "6ixpack (6to5m)", "names": ["6ixpack.exe", "6ixpack"], "env": "SIXPACK", "paths": [], "role": "GTA VI RPF9 scan/extract, TTPF -> DDS/PNG, drawables -> OBJ/GLB, VI -> V conversion (Rust)", "source": "https://github.com/DesignWithTommy/6to5m", "license": "GPL-3.0"},
+  {"id": "shv_sdk", "name": "ScriptHookV SDK", "names": [], "dir_marker": "inc/main.h", "dir_names": ["ScriptHookV_SDK*"], "env": "SHV_SDK", "paths": [], "role": "inc/ + lib/ScriptHookV.lib for C++ asi", "source": "https://dev-c.com/gtav/scripthookv/"},
+  {"id": "shvdn_ref", "name": "ScriptHookVDotNet3.dll (reference)", "names": ["ScriptHookVDotNet3.dll"], "env": "SHVDN_REF", "paths": [], "role": "compile-time reference for SHVDN3 scripts (from the game folder or the SHVDN release)", "source": "https://github.com/scripthookvdotnet/scripthookvdotnet/releases"},
   {"id": "cmake", "name": "CMake", "names": ["cmake"], "role": "build C++ plugins"},
-  {"id": "ninja", "name": "Ninja", "names": ["ninja"], "role": "CMake generator"},
-  {"id": "dotnet", "name": ".NET SDK", "names": ["dotnet"], "role": "build SHVDN plugins"},
-  {"id": "cargo", "name": "Rust (cargo)", "names": ["cargo"], "role": "build 6to5m / RageForge"},
-  {"id": "luajit", "name": "LuaJIT", "names": ["luajit", "luac"], "env": "LUAJIT", "role": "Lua syntax check (FiveM/RedM)"},
-  {"id": "blender", "name": "Blender + Sollumz", "names": ["blender"], "role": "GTA V model import/export (Sollumz 2.9.1, Blender 5.x)"}
+  {"id": "ninja", "name": "Ninja", "names": ["ninja"], "role": "CMake generator (ships with Visual Studio)"},
+  {"id": "dotnet", "name": ".NET SDK", "names": ["dotnet"], "role": "build SHVDN plugins (net48 targeting pack)"},
+  {"id": "cargo", "name": "Rust (cargo)", "names": ["cargo"], "role": "build 6to5m"},
+  {"id": "luajit", "name": "LuaJIT", "names": ["luajit", "luac", "luac5.4"], "env": "LUAJIT", "role": "Lua syntax check (FiveM resources)"},
+  {"id": "blender", "name": "Blender + Sollumz", "names": ["blender"], "role": "GTA V model import/export (Sollumz)"}
  ]
 }

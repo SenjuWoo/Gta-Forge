@@ -1,7 +1,12 @@
-# Deploy and logs
+# Deploy and test
 
-- `gtaforge deploy` copies the runtime files into the game (scripts/<name> for
-  SHVDN/Lua, game root for asi/xml) with a receipt and backups.
-- `gtaforge deploy --remove` restores from the receipt.
-- Launch with `-nobattleye`; then `gtaforge logs --mod <name>`.
-- Deploy is explicit; the forge never launches the game or publishes.
+- `gtaforge deploy --dry-run` shows every file and where it goes.
+- `gtaforge deploy` copies the **payload** (gtaforge.json `payload` rules: build
+  outputs and data, never sources) into the game, each file by temp copy +
+  rename, with a receipt in `<forge home>/deploy/<name>.json`.
+- The first time a game file is replaced, its original is backed up; later
+  deploys keep that original. Files dropped from the payload are taken out.
+- `gtaforge deploy --remove` restores originals, deletes what the forge added,
+  leaves files someone changed after the deploy, prunes empty folders.
+- Launch story mode with `-nobattleye` (args.txt), then `gtaforge logs --mod <name>`.
+- The forge never launches the game, never touches GTA Online, never publishes.

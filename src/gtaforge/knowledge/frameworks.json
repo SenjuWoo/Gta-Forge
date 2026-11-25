@@ -1,12 +1,92 @@
 {
  "frameworks": [
-  {"id": "scripthookv", "name": "ScriptHookV", "markers": ["ScriptHookV.dll"], "version_from": "ScriptHookV.dll", "role": "native API for asi plugins", "repo": "https://dev-c.com/gtav/scripthookv/", "edition": "both"},
-  {"id": "asi_loader", "name": "ASI loader", "markers": ["dinput8.dll", "xinput1_4.dll", "dsound.dll"], "role": "loads .asi into the game", "edition": "both"},
-  {"id": "shvdn", "name": "ScriptHookVDotNet", "markers": ["ScriptHookVDotNet.asi"], "version_from": "ScriptHookVDotNet.asi", "role": ".NET script runtime (Enhanced needs the Enhanced build)", "repo": "https://github.com/scripthookvdotnet/scripthookvdotnet", "edition": "both"},
-  {"id": "menyoo", "name": "Menyoo", "markers": ["Menyoo.asi"], "role": "trainer / object & ped spawner (reference, not a dependency)", "edition": "both"},
-  {"id": "openiv", "name": "OpenIV", "markers": ["OpenIV.asi"], "role": "archive editor (suite, not asi-only)", "edition": "both"},
-  {"id": "onigiri", "name": "onigiri", "markers": ["onigiri.asi", "onigiri"], "role": "loose-file override loader (data/audio without editing RPFs)", "edition": "enhanced"},
-  {"id": "gta6_runtime", "name": "GTA VI PC runtime", "markers": ["GTA6.exe", "GTA6_Enhanced.exe"], "role": "none playable yet (VIctory etc.)", "edition": "vi"}
- ],
- "tools": []
+  {
+   "id": "scripthookv",
+   "name": "ScriptHookV",
+   "markers": [
+    "ScriptHookV.dll"
+   ],
+   "version_from": "ScriptHookV.dll",
+   "role": "native API for asi plugins",
+   "repo": "https://dev-c.com/gtav/scripthookv/",
+   "edition": "both"
+  },
+  {
+   "id": "asi_loader",
+   "name": "ASI loader",
+   "markers": [
+    "dinput8.dll",
+    "xinput1_4.dll",
+    "dsound.dll",
+    "version.dll",
+    "winmm.dll"
+   ],
+   "role": "loads .asi into the game (ScriptHookV ships dinput8.dll; Ultimate ASI Loader also works as xinput1_4.dll / version.dll)",
+   "edition": "both",
+   "match": "any"
+  },
+  {
+   "id": "shvdn",
+   "name": "ScriptHookVDotNet",
+   "markers": [
+    "ScriptHookVDotNet.asi"
+   ],
+   "version_from": "ScriptHookVDotNet.asi",
+   "role": ".NET script runtime; Enhanced needs the Enhanced build (3.9.x)",
+   "repo": "https://github.com/scripthookvdotnet/scripthookvdotnet",
+   "edition": "both"
+  },
+  {
+   "id": "menyoo",
+   "name": "Menyoo",
+   "markers": [
+    "Menyoo.asi"
+   ],
+   "role": "trainer / object & ped spawner (reference, not a dependency)",
+   "edition": "both",
+   "repo": "https://github.com/itsjustcurtis/MenyooSP"
+  },
+  {
+   "id": "openiv",
+   "name": "OpenIV",
+   "markers": [
+    "OpenIV.asi"
+   ],
+   "role": "archive editor (suite, not asi-only)",
+   "edition": "both"
+  },
+  {
+   "id": "onigiri",
+   "name": "onigiri",
+   "markers": [
+    "onigiri.asi",
+    "onigiri"
+   ],
+   "role": "loose-file override loader (data/audio without editing RPFs)",
+   "edition": "enhanced",
+   "match": "any"
+  },
+  {
+   "id": "gta6_runtime",
+   "name": "GTA VI PC runtime",
+   "markers": [
+    "GTA6.exe",
+    "GTA6_Enhanced.exe"
+   ],
+   "role": "none playable yet (VIctory etc.)",
+   "edition": "vi",
+   "match": "any"
+  },
+  {
+   "id": "reshade",
+   "name": "ReShade",
+   "markers": [
+    "ReShade.asi",
+    "dxgi.dll"
+   ],
+   "match": "any",
+   "role": "post-processing (not a script framework)",
+   "edition": "both"
+  }
+ ]
 }

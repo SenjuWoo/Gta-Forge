@@ -37,16 +37,11 @@ if (-not $SkipTests) {
   if ($LASTEXITCODE -ne 0) { throw 'tests failed' }
 }
 New-Item -ItemType Directory -Force -Path $binDir | Out-Null
+# Delegate to the checkout's launcher. No parenthesized block: %ERRORLEVEL% inside one is expanded
+# before the command runs, which made every exit code 0 before 1.0.0.
 $launcherText = @"
 @echo off
-setlocal EnableExtensions DisableDelayedExpansion
-set "GTA_FORGE_ROOT=$root"
-if exist "%GTA_FORGE_ROOT%\.venv\Scripts\python.exe" (
-  "%GTA_FORGE_ROOT%\.venv\Scripts\python.exe" -m gtaforge %*
-  exit /b %ERRORLEVEL%
-)
-set "PYTHONPATH=%GTA_FORGE_ROOT%src;%PYTHONPATH%"
-python -m gtaforge %*
+call "$root\gtaforge.cmd" %*
 exit /b %ERRORLEVEL%
 "@
 [IO.File]::WriteAllText($launcher, $launcherText.Replace("`n", "`r`n"), [Text.Encoding]::ASCII)
@@ -58,9 +53,14 @@ if ($userPath -notlike "*$binDir*") {
 if (-not $NoAgentIntegration) {
   foreach ($t in $skillTargets) {
     $dst = Join-Path $t 'gta-forge'
-    if (Test-Path $dst) { Copy-Item -Recurse -Force (Join-Path $dst '*') (Join-Path $env:TEMP 'gtaforge-skill-backup') -ErrorAction SilentlyContinue }
-    New-Item -ItemType Directory -Force -Path $t | Out-Null
-    Copy-Item -Recurse -Force $skillSrc $dst
+    if (Test-Path $dst) {
+      # back up the installed copy, then replace it (copying a folder onto an existing one nests it)
+      $bak = Join-Path $env:TEMP ('gtaforge-skill-backup-' + (Get-Date -Format 'yyyyMMdd-HHmmss'))
+      Copy-Item -Recurse -Force $dst $bak
+      Remove-Item -Recurse -Force $dst
+    }
+    New-Item -ItemType Directory -Force -Path $dst | Out-Null
+    Copy-Item -Recurse -Force (Join-Path $skillSrc '*') $dst
     Write-Host "skill installed: $dst"
   }
 }
