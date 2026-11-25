@@ -1,7 +1,7 @@
 # STATE
 
 Version: **1.2.1** (2026-11-24)
-Last known good: v1.2.0 (tag on 76d116d, CI green, release asset verified against SHA256SUMS); previous v1.1.1 (615ab6c).
+Last known good: v1.2.1 (tag on ded4efc, CI green, release zip verified with sha256sum -c); previous v1.2.0 (76d116d).
 
 ## Goal
 
@@ -44,6 +44,8 @@ already runs and is tested before any GTA VI file exists. Plan: PLAN.md.
 - When GTA VI files exist: `gtaforge vi checklist <folder>` and follow it.
 
 ## Gaps
+
+- GitHub social preview image is not set (no API; repo Settings > Social preview > upload docs/presentation/social-preview.png).
 
 - No load/gameplay evidence: ScriptHookV does not support Enhanced 1.0.1158.16 yet (doctor warns).
 - luajit not installed: `script lua` names the fix.
